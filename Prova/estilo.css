@@ -1,0 +1,41 @@
+body {
+
+
+    margin: 0px;
+
+
+}
+
+div#container {
+    background-image: url("https://picfiles.alphacoders.com/211/211158.png");
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+div#box {
+    border-radius: 10px;
+    width: 400px;
+    height: 500px;
+    background: rgb(206, 207, 211);
+}
+
+h1#login {
+
+    font: optional;
+    margin-left: 150px;
+    margin-top: 80px;
+
+}
+
+input#log {
+
+    text-align-last: center;
+    border-radius: 20px;
+    width: 300px;
+    height: 30px;
+    margin-left: 45px;
+}

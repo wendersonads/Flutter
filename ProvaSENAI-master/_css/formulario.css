@@ -1,0 +1,51 @@
+body {
+    font-family: Arial;
+    font-size: 10pt;
+   
+}
+
+p {
+    text-align: justify;
+    text-indent: 20px;
+}
+
+article h1 {
+    font-size: 15px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, .3);
+    padding: 5px;
+    margin: 0px;
+}
+
+article h2 {
+    font-size: 13px;
+    color: #888888;
+    margin: 0px;
+}
+
+article {
+    margin-bottom: 800px;
+}
+
+img.img-dir {
+    display: block;
+    float: right;
+    margin-left: 5px;
+}
+
+iframe#frame-quest {
+    width: 1000px;
+    height: 600px;
+    border: none;
+    scroll-padding: unset;
+}
+
+iframe#frame-quest {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+iframe#frame-quest::-webkit-scrollbar {
+    -webkit-overflow-scrolling: touch;
+    display: none;
+}

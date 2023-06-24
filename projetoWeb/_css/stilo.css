@@ -1,0 +1,260 @@
+Body {
+    font-family: Arial, sans-serif;
+    background-color: #808080;
+    color: rgba(0, 0, 0, 1);
+
+}
+
+div#interface {
+    width: 1550px;
+    background-color: darkblue;
+    margin: -1px auto 0px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    padding: 10px 10px 10px 10px;
+}
+
+header#cabecalho {
+    border-bottom: 1px yellow solid;
+    height: 150px;
+}
+
+section#corpo {
+    display: block;
+    width: 500px;
+    float: left;
+    border-right: 1px solid #606060;
+    padding-right: 15px;
+}
+
+footer#rodape {
+    clear: both;
+    border-top: 1px solid black;
+}
+
+footer#rodape p {
+    text-align: center;
+}
+
+header#cabecalho h1 {
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22pt;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .6);
+    padding: 0px;
+    margin-bottom: 150px;
+    margin-top: -10px;
+    margin-left: 620px;
+}
+
+header#cabecalho h2 {
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15pt;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .6);
+    padding: 0px;
+    margin-bottom: 150px;
+    margin-top: 30px;
+    margin-left: 680px;
+}
+
+header#cabecalho img#logo {
+    position: absolute;
+    left: 15px;
+    top: 7px;
+    height: 170px;
+    width: 250px;
+    border: none;
+}
+
+header#cabecalho img#icone {
+    position: absolute;
+    left: 1400px;
+    top: 7px;
+    height: 175px;
+    width: 170px;
+}
+
+nav#menu {
+    display: block;
+}
+
+nav#menu ul {
+    list-style: none;
+    text-transform: uppercase;
+    position: absolute;
+    top: 100px;
+    left: 390px;
+}
+
+nav#menu li {
+    display: inline-block;
+    background-color: #dddddd;
+    padding: 10px;
+    margin: 2px;
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
+}
+
+nav#menu li:hover {
+    background-color: #606060;
+}
+
+nav#menu h1 {
+    display: none;
+}
+
+nav#menu a {
+    color: black;
+    text-decoration: none;
+}
+
+nav#menu a:hover {
+    color: #ffffff;
+}
+
+section#corpo {
+    display: block;
+    width: 650px;
+    float: left;
+    border-right: 1px solid #606060;
+    padding-right: 15px;
+}
+
+table#tabelaspec {
+    border: 1px solid #606060;
+    border-spacing: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, sans-serif;
+}
+
+table#tabelaspec td {
+    border: 1px solid #606060;
+    padding: 10px;
+    background-color: #cecece;
+}
+
+aside#lateral {
+    display: block;
+    width: 850px;
+    float: right;
+    background-color: #dddddd;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+}
+
+aside#lateral h1 {
+    font-family: 'FontLogo', sans-serif;
+    font-size: 20pt;
+    color: #606060;
+    margin-top: 0px;
+}
+
+aside#lateral h2 {
+    font-size: 13pt;
+    color: #ffffff;
+    background-color: #606060;
+    padding: 10px;
+}
+
+ul#album-fotos {
+    width: 600px;
+    margin: 0px auto;
+    padding: 50px;
+    overflow: hidden;
+    list-style: none;
+}
+
+ul#album-fotos li {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border: 5px solid #ffffff;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+    transition: all .4s ease-in;
+    -webkit-transition: all .4s ease-in;
+}
+
+ul#album-fotos li span {
+    opacity: 0;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+    background-color: rgba(0, 0, 0, .3);
+    font-size: 9px;
+    line-height: 370px;
+    padding: 5px;
+}
+
+ul#album-fotos li:hover {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+}
+
+ul#album-fotos li:hover span {
+    opacity: 1;
+}
+
+ul#album-fotos li#foto-01 {
+
+    background: url('../_imagens/cel-1.png') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: #ffffff;
+}
+
+ul#album-fotos li#foto-01:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto-02 {
+    background: url('../_imagens/cel-2.png') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: #ffffff;
+}
+
+ul#album-fotos li#foto-02:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+
+\\tela brastemp ul#album-fotosBrastemp {
+    width: 600px;
+    margin: 0px auto;
+    padding: 50px;
+    overflow: hidden;
+    list-style: none;
+}
+
+div#corpoBrastemp {
+    display: block;
+    width: 500px;
+    float: left;
+    border-right: 1px solid #606060;
+    padding-right: 15px;
+}
+
+button#botao {
+
+    background-color: whitesmoke;
+    border: 2px solid green;
+    border-radius: 10px;
+    display: inline-block;
+    cursor: none;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 6px 10px;
+    text-shadow:0px 1px 0px none;
+
+
+}

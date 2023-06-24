@@ -1,0 +1,35 @@
+body {
+    padding: 10px;
+    margin: 0;
+    width: 1280px;
+    height: auto;
+}
+
+
+input[type='file'] {
+    display: none;
+}
+
+.max-width {
+    top: 10px;
+    left: 1000px;
+    position: absolute;
+    width: 150px;
+    height: auto;
+}
+
+#imgPhoto {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    background-color: #eee;
+    border: 5px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .3s;
+}
+
+#imgPhoto:hover {
+    background-color: rgb(180, 180, 180);
+    border: 5px solid #111;
+}

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        p {
+            text-align: justify;
+            text-indent: 20px;
+        }
+
+        article h1 {
+            font-size: 15px;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, .3);
+            padding: 5px;
+            margin: 0px;
+        }
+
+        article h2 {
+            font-size: 25px;
+            color: black;
+            margin: 0px;
+            text-align: center;
+        }
+
+        article {
+            margin-bottom: 800px;
+        }
+
+        img.img-dir {
+            display: block;
+            float: right;
+            margin-left: 5px;
+        }
+
+        iframe#frame-quest {
+            width: 1000px;
+            height: 600px;
+            border: none;
+            scroll-padding: unset;
+        }
+
+        iframe#frame-quest {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        iframe#frame-quest::-webkit-scrollbar {
+            -webkit-overflow-scrolling: touch;
+            display: none;
+        }
+
+        input#codigo {
+
+            border-radius: 8px;
+
+        }
+
+        input#foto {
+            border-radius: 50px;
+        }
+
+        label#tam {
+
+            font-weight: 700;
+            font-size: 15px;
+            font-variant: small-caps;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+        table#tabela1 {
+
+            margin-left: 50px;
+            background-color: rgb(156, 156, 156);
+            border-radius: 10px;
+
+
+        }
+
+        select#selec {
+
+            border-radius: 8px;
+        }
+    </style>
+
+    <title>Cadastro Novo Mundo</title>
+    <link rel="stylesheet" href="_css/stilo.css" />
+    <link rel="icon" href="_imagens/cadastro.png" type="image/x-icon">
+    <script language="javascript" src="_javascript/funcoes.js"></script>
+    <script language="javascript" src="_javascript/cidades.js"></script>
+    <script language="javascript" src="_javascript/cadastro.js"></script>
+
+</head>
+
+
+<body>
+
+    <article id="dados-pessoais">
+        <table id="tabela1">
+
+
+            <div id="titulo">
+                <h2>Cadastro Funcionário</h2>
+            </div>
+
+
+            <form id="form1" method="get" action="envio_dados.php"></form>
+
+
+            <tr>
+                <td>
+                    <label id="tam" for="cnasc">Código: <br /> </label>
+                    <input id="codigo" type="text" name="Codigo" placeholder="" style="width: 40px;">
+                </td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td>
+                    <label id="tam" for="cdata">Data: <br></label>
+                    <input id="codigo" type="date" name="data">
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td>
+                    <label id="tam" for="cnasc">Matrícula: <br /> </label>
+                    <input id="codigo" type="text" name="matricula" placeholder="" style="width: 100px;">
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td>
+                    <label id="tam" for="cnasc">Nome Colaborador: <br /> </label>
+                    <input id="codigo" type="text" name="matricula" placeholder="Digite o nome..."
+                        style="width: 400px;">
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td>
+                    <label id="tam" for="cnasc">Admissão: <br /> </label>
+                    <input id="codigo" type="date" name="matricula" placeholder="">
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td>
+                    <label id="tam" for="cnasc">Foto: <br /> </label>
+                    <input id="foto" type="file" name="fotoC" accept="image/*">
+
+                </td>
+            </tr>
+
+        </table>
+        <br>
+        <br>
+        <table id="tabela1">
+            <tr>
+                <td>
+                    <label id="tam" for="cnasc">Nome do Pai: <br /> </label>
+                    <input id="codigo" type="text" name="nomePai" style="width:573px;">
+                </td>
+                <td>
+                    <label id="tam" for="cnasc">Nome do Mãe: <br /> </label>
+                    <input id="codigo" type="text" name="nomePai" style="width:573px;">
+                </td>
+
+            </tr>
+        </table>
+        <br>
+        <br>
+        <table id="tabela1">
+            <tr>
+                <td>
+                    <label id="tam" for="esc">Grau de Instrução: <br /> </label>
+                    <select name="escolaridade" id="selec" style="width: 200px;">
+                        <option value="">Selecione...</option>
+                        <option value="">Ensino Fundamental</option>
+                        <option value="">Ensino Médio</option>
+                        <option value="">Ensino Superior</option>
+
+                    </select>
+                </td>
+
+                <td>
+                    <label id="tam" for="cnasc">Data Nasc:<br /> </label>
+                    <input id="codigo" type="date" name="dataNasc">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Idade:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 40px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Nacionalidade:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 200px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Estado Civil:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 200px;">
+                </td>
+
+                <td>
+                    <label id="tam" for="cuf">Estado de Nascimento: <br /> </label>
+                    <select name="tuf" id="cuf" oninput="busca_cidades()" style="border-radius: 10px; width: 195px; ">
+                        <optgroup label="Região Norte">
+                            <option value="XX" selected>...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="PA">Pará</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="TO">Tocantins</option>
+                        </optgroup>
+                        <optgroup label="Região Nordeste">
+                            <option value="AL">Alagoas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piaui</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="SE">Sergipe</option>
+                        </optgroup>
+                        <optgroup label="Região Sul">
+                            <option value="PR">Paraná</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="SC">Santa Catarina</option>
+                        </optgroup>
+                        <optgroup label="Região Sudeste">
+                            <option value="ES">Espírito Santo</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="SP">São Paulo</option>
+                        </optgroup>
+                        <optgroup label="Região Sul">
+                            <option value="PR">Paraná</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="SC">Santa Catarina</option>
+                        </optgroup>
+                        <optgroup label="Região Sudeste">
+                            <option value="ES">Espírito Santo</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="SP">São Paulo</option>
+                        </optgroup>
+                        <optgroup label="Região Cento-Oeste">
+                            <option value="DF">Distrito Federal</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                        </optgroup>
+                    </select>
+                <td>
+                    <label id="tam" for="ccidade">Cidade de Nascimento: <br /></label>
+                    <select name="tcidade" id="ccidade" maxlength="50" style="border-radius: 10px; width: 150px; ">
+
+                        <datalist id="tcidades">
+                            <option value=".">...</option>
+                        </datalist>
+                    </select>
+                </td>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <table id="tabela1">
+            <tr>
+                <td>
+                    <label id="tam" for="idade">Cpf:<br /> </label>
+                    <input id="valor" type="text" name="idade" oninput="mascara(this)" style="width: 100px; border-radius: 10px;">
+                    <button onclick={validarCPF(valor)} style="border-radius: 10px;">Validar</button>
+                </td>
+                <td>
+                    <label id="tam" for="idade">identitade:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 110px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Orgão Emissor:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 150px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Data Emissão:<br /> </label>
+                    <input id="codigo" type="date" name="idade" style="width: 170px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Cert. Reservista:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 160px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Categoria:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 132px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">C.T.P.S:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 100px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Série<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 100px;">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <table id="tabela1">
+            <tr>
+                <td>
+                    <label id="tam" for="idade">Título de Eleitor :<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 150px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Zona:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 80px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Sessão:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 80px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">CNH:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 170px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Cat.:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 80px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">Validade:<br /> </label>
+                    <input id="codigo" type="date" name="idade" style="width: 132px;">
+                </td>
+                <td>
+                    <label id="tam" for="idade">CBO:<br /> </label>
+                    <select id="cbo" oninput="verificaCbo()" style="border-radius: 10px; width: 150px;">
+                        <option>-</option>
+                        <option value="1">6125-10</option>
+                        <option value="2">2631-05</option>
+                        <option value="3">2631-05</option>
+                        <option value="4">6220-20</option>
+                        <option value="5">8621-20</option>
+                        <option value="6">8621-60</option>
+                        <option value="7">7842-05</option>
+                        <option value="8">7842-05</option>
+                        <option value="9">6326-05</option>
+                        <option value="10">8485-05</option>
+                    </select>
+
+                </td>
+                <td>
+                    <span>
+                        <label id="tam">Cargo/Função:</label><br>
+                        <input id="cargo" type="text" style="border-radius: 10px; width: 250px; ">
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <table id="tabela1">
+
+            <tr>
+
+                <td>
+
+                    <label id="tam" for="idade">Endereço:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 1168px;">
+
+                </td>
+
+            </tr>
+
+
+        </table>
+        <br>
+        <br>
+        <table id="tabela1">
+            <tr>
+                <td>
+
+                    <label id="tam" for="idade">Bairro:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 580px;">
+
+                </td>
+                <td>
+
+                    <label id="tam" for="idade">Cidade:<br /> </label>
+                    <input id="codigo" type="text" name="idade" style="width: 575px;">
+
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <table id="tabela1">
+            <tr>
+                <td>
+
+                    <label id="tam" for="idade">UF:<br /> </label>
+                    <select name="" id="" style="border-radius: 10px;">
+                        <option value="">...</option>
+                        <option value="">AC</option>
+                        <option value="">AL</option>
+                        <option value="">AM</option>
+                        <option value="">BA</option>
+                        <option value="">CE</option>
+                        <option value="">DF</option>
+
+                    </select>
+
+                </td>
+                <td>
+
+                    <label id="tam" for="idade">Cep:<br /> </label>
+                    <input id="codigo" type="text" name="cep">
+
+                </td>
+                <td>
+
+                    <label id="tam" for="idade">Telefone:<br /> </label>
+                    <input id="codigo" type="text" name="tel">
+
+                </td>
+                <td>
+
+                    <label id="tam" for="idade">Celular:<br /> </label>
+                    <input id="codigo" type="text" name="cel">
+
+                </td>
+                <td>
+
+                    <label id="tam" for="idade">Email:<br /> </label>
+                    <input id="codigo" type="email" name="email">
+
+                </td>
+                <td>
+
+                    <label id="tam" for="idade">Recado/Avisar em caso de acidente:<br /> </label>
+                    <input id="codigo" type="email" name="reca" style="width: 395px;">
+
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <table id="tabela1">
+            <tr>
+                <td>
+
+                    <label id="tam" for="idade">N°. PIS/NIT:<br /> </label>
+                    <input id="codigo" type="email" name="pis">
+
+                </td>
+                <td>
+                    <label id="tam" for="idade">Optante FGTS:<br /> </label>
+                    <select name="" id="" style="width: 100px; border-radius: 10px;">
+
+                        <option value="">Sim</option>
+                        <option value="">Não</option>
+
+                    </select>
+
+                </td>
+                <td>
+                    <label id="tam" for="idade">Data Opção:<br /> </label>
+                    <input id="codigo" type="date" name="datao">
+
+
+                </td>
+                <td>
+
+                    <label id="tam" for="idade">Banco para Depósito:<br /> </label>
+                    <input id="codigo" type="email" name="banco" style="width: 250px;">
+
+                </td>
+                <td>
+                    <label id="tam" for="idade">Dt. Retratação:<br /> </label>
+                    <input id="codigo" type="date" name="datao" style="width: 244px;">
+
+
+                </td>
+                <td>
+                    <label id="tam" for="idade">Admissional:<br /> </label>
+                    <input id="codigo" type="date" name="datao" style="width: 241px;">
+
+
+                </td>
+            </tr>
+
+
+
+        </table>
+
+
+
+
+
+
+        </form>
+
+    </article>
+
+
+</body>
+
+
+
+</html>

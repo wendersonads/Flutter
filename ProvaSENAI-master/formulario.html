@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lojas Novo Mundo</title>
+    <link rel="stylesheet" href="_css/estilo.css" />
+    <link rel="icon" href="_imagens/logo-nm-com.png" type="image/x-icon">
+    <script language="javascript" src="_javaScript/funcoes.js"></script>
+    <script language="javascript" src="_javaScript/cidades.js"></script>
+</head>
+
+<form method="post" id="finstrumento" action="http://localhost:8000/salvaform.php">
+
+
+    <body>
+        <article id="dados-pessoais">
+            <header>
+                <h1>Por favor, informe alguns dados sociais:</h1>
+            </header>
+            <table id="tabelaq1">
+                <tr>
+                    <td class="ce"><label for="cnasc">Data de Nascimento: <br /> </label> <input type="date" name="tnasc"
+                            id="cnasc"></td>
+
+                    <td class="cd"><label for="cpais">País de Nascimento: <br /> </label><input type="text" name="tpais"
+                            id="cpais" size="30" maxlength="30" placeholder="País
+                    de nascimento" value="Brasil" /></td>
+                </tr>
+
+                <tr>
+                    <td class="ce">&nbsp</td>
+                    <td class="cc">&nbsp</td>
+                    <td class="cd">&nbsp</td>
+                </tr>
+                <td class="ce"><label>Sexo: <br /> </label>
+                    <select name="tsexo" id="isexos">
+                        <option value="X" selected>...</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
+                </td>
+
+                <td class="cd"><label for="cuf">Estado de Nascimento: <br /> </label><select name="tuf" id="cuf"
+                        oninput="busca_cidades()">
+                        <optgroup label="Região Norte">
+                            <option value="XX" selected>...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="PA">Pará</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="TO">Tocantins</option>
+                        </optgroup>
+                        <optgroup label="Região Nordeste">
+                            <option value="AL">Alagoas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piaui</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="SE">Sergipe</option>
+                        </optgroup>
+                        <optgroup label="Região Sul">
+                            <option value="PR">Paraná</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="SC">Santa Catarina</option>
+                        </optgroup>
+                        <optgroup label="Região Sudeste">
+                            <option value="ES">Espírito Santo</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="SP">São Paulo</option>
+                        </optgroup>
+                        <optgroup label="Região Sul">
+                            <option value="PR">Paraná</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="SC">Santa Catarina</option>
+                        </optgroup>
+                        <optgroup label="Região Sudeste">
+                            <option value="ES">Espírito Santo</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="SP">São Paulo</option>
+                        </optgroup>
+                        <optgroup label="Região Cento-Oeste">
+                            <option value="DF">Distrito Federal</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                        </optgroup>
+
+                </td>
+
+                <tr>
+                    <td class="ce">&nbsp</td>
+                    <td class="cc">&nbsp</td>
+                    <td class="cd">&nbsp</td>
+                </tr>
+
+                <td class="ce"><label>Você reside em Goiânia (GO)? <br /> </label>
+                    <select name="tmora" id="imora">
+                        <option value="X" selected>...</option>
+                        <option value="S">Sim</option>
+                        <option value="N">Não</option>
+                    </select>
+                </td>
+
+
+                <td class="ce"><label for="ccidade">Cidade de Nascimento: <br />
+                    </label><select name="tcidade" id="ccidade" maxlength="50">
+
+                        <datalist id="tcidades">
+                            <option value="."></option>
+                        </datalist>
+                    </select>
+                </td>
+
+                </tr>
+                <tr>
+
+                <tr>
+                    <td class="ce">&nbsp</td>
+                    <td class="cc">&nbsp</td>
+                    <td class="cd">&nbsp</td>
+                </tr>
+                <td class="ce"><label>Estado Civil: <br /> </label>
+                    <select name="testciv" id="iestciv">
+                        <option value="X" selected>...</option>
+                        <option value="S">Solteiro(a)</option>
+                        <option value="C">Casado(a)</option>
+                        <option value="V">Viúvo(a)</option>
+                        <option value="D">Divorciado(a) / Separado (a)</option>
+                        <option value="U">União Estável</option>
+                        <option value="N">Prefiro não informar</option>
+                    </select>
+                </td>
+
+
+                <td class="cd"><label for="ccidade2">Caso você não resida em Goiânia,
+                        informe a cidade onde reside: </label><br /><input type="text" name="tcidade2" id="ccidade2"
+                        size="30" maxlength="30" placeholder="Nome da cidade onde
+reside" />
+                </td>
+                </tr>
+
+                <tr>
+                    <td class="ce"><label for="crendapes"><b>RENDA PESSOAL</b> &nbsp
+                            (ganho &nbsp obtido &nbsp individualmente, &nbsp por &nbsp trabalho &nbsp
+                            remunerado).<br /> Arrraste o botão ao lado, de modo a selecionar sua faixa de
+                            renda:</label></td>
+                    <td class="cd"> <input type="text" name="trendapestotal" id="crendapestotal" size="27"
+                            placeholder="Não possuo" readonly> <br /> &nbsp
+                        &nbsp Mín <input type="range" name="trendapes" id="crendapes" min="0" max="23000" step="1212"
+                            value="0" oninput="calc_total()" /> Máx</td>
+                </tr>
+
+                <td class="ce"><label for="crendafam"><b>RENDA FAMILIAR </b>
+                        (considerada &nbsp a &nbsp soma &nbsp dos &nbsp ganhos &nbsp dos &nbsp
+                        membros do núcleo <br />familiar imediato [pai, mãe, esposo(a), filho (s), e/ou
+                        avós], por trabalho remunerado). <br /> Arrraste o botão ao lado de modo, a
+                        selecionar sua faixa de renda...</label></td>
+
+                <td class="cd"><input type="text" name="trendafamtotal" id="crendafamtotal" size="27"
+                        placeholder="Não possuo" readonly><br /> &nbsp &nbsp Mín <input type="range" name="trendafam"
+                        id="crendafam" min="0" max="33000" step="1212" value="0" oninput="calc_total2()" /> Máx </td>
+                </tr>
+
+
+
+            </table>
+
+
+
+        </article>
+
+    </body>
+
+</html>
