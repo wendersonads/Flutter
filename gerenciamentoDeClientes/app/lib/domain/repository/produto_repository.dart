@@ -46,4 +46,10 @@ class ProdutoRepository {
     }
     
   }
+
+  deletarProduto(int idProduto) {}
+
+  editarProduto(Produto produtoEditado) {}
+
+  salvarNovoProduto(Produto novoProduto) {}
 }

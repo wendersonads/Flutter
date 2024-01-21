@@ -1,5 +1,7 @@
 package com.develop.gpp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,5 +27,16 @@ public class AccountController {
     @PostMapping("register")
     public Account register(@RequestBody RegisterDTO dto) {
         return service.register(dto);
+    }
+
+    @GetMapping("account/")
+    public List<Account> todosUsuarios(){
+        return service.todosUsuarios();
+    }
+
+    @GetMapping("account/{id}")
+    public Account buscarPorId(@PathVariable Long id){
+
+        return service.buscarPorId(id);
     }
 }

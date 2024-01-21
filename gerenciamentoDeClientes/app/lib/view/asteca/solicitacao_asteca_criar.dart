@@ -66,7 +66,9 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                           tipoNotificacao: TipoNotificacaoEnum.error,
                         );
                       } else {
-                        final houveErro = await controller.notasFiscaisPorProduto(controller.txtIdProduto.text);
+                        final houveErro =
+                            await controller.notasFiscaisPorProduto(
+                                controller.txtIdProduto.text);
                         if (houveErro) {
                           modalListaNotasFiscais(context);
                         }
@@ -91,15 +93,16 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-          Row(
-            children: [
-              Expanded(child: TextComponent(
-                'Produto',
-                textAlign: TextAlign.start,
-              ))
-            ],
-          ),
-         Row(
+        Row(
+          children: [
+            Expanded(
+                child: TextComponent(
+              'Produto',
+              textAlign: TextAlign.start,
+            ))
+          ],
+        ),
+        Row(
           children: [
             Obx(() {
               if (controller.notaFiscalSelecionada.value == null) {
@@ -110,8 +113,8 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
               }
               return Expanded(
                   child: InputComponent(
-                hintText:
-                    controller.notaFiscalSelecionada.value?.descricao.toString(),
+                hintText: controller.notaFiscalSelecionada.value?.descricao
+                    .toString(),
                 readOnly: true,
                 decoration: InputDecoration(),
               ));
@@ -134,43 +137,43 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 32),
                     child: Obx(
-                        () => !controller.carregandoMotivoCriacaoAsteca.value
-                            ? Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade200,
-                                  borderRadius: BorderRadius.circular(5),
+                      () => !controller.carregandoMotivoCriacaoAsteca.value
+                          ? Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade200,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: DropdownSearch<AstecaMotivo>(
+                                dropdownSearchDecoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
                                 ),
-                                child: DropdownSearch<AstecaMotivo>(
-                                  dropdownSearchDecoration: const InputDecoration(
-                                    border: InputBorder.none,
-                                    contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                  ),
-                                  isFilteredOnline: true,
-                                  showSearchBox: true,
-                                  hint: 'Motivo',
-                                  mode: Mode.MENU,
-                                  items: controller.motivosCriacaoAstecaList,
-                                  itemAsString: (AstecaMotivo? motivos) =>
-                                      motivos!.denominacao.toString(),
-                                 onChanged: (value) {
-                                   controller.motivoCriacaoAsteca.value = value!;
-                                 },
-                                 onSaved: (value){
-                                   controller.pedidoAsteca.value.motivoCriacaoAsteca = value;
-                                 },
-                                ),
-                              )
-                            : const LoadingComponent(),
-                   ),
+                                isFilteredOnline: true,
+                                showSearchBox: true,
+                                hint: 'Motivo',
+                                mode: Mode.MENU,
+                                items: controller.motivosCriacaoAstecaList,
+                                itemAsString: (AstecaMotivo? motivos) =>
+                                    motivos!.denominacao.toString(),
+                                onChanged: (value) {
+                                  controller.motivoCriacaoAsteca.value = value!;
+                                },
+                                onSaved: (value) {
+                                  controller.pedidoAsteca.value
+                                      .motivoCriacaoAsteca = value;
+                                },
+                              ),
+                            )
+                          : const LoadingComponent(),
+                    ),
                   ),
                 ],
               ),
             ),
           ],
         ),
-        Row(
-          children: [
+        Row(children: [
           Expanded(
             child: Obx(
               () {
@@ -197,9 +200,10 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                             onChanged: (value) {
                               controller.tipoAstecaEnum.value = value;
                             },
-                            items: TipoAstecaEnum.values.map<DropdownMenuItem<TipoAstecaEnum>>((status) {
-                              return DropdownMenuItem<
-                                  TipoAstecaEnum>(
+                            items: TipoAstecaEnum.values
+                                .map<DropdownMenuItem<TipoAstecaEnum>>(
+                                    (status) {
+                              return DropdownMenuItem<TipoAstecaEnum>(
                                 value: status,
                                 child: Text(status.name),
                               );
@@ -235,7 +239,7 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               Expanded(
+              Expanded(
                 child: const TextComponent(
                   'NF',
                   fontWeight: FontWeight.bold,
@@ -269,8 +273,8 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
             ],
           ),
         ),
-         Container(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
           color: Colors.white,
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.start,
@@ -292,8 +296,7 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                          controller
-                              .notaFiscalSelecionada.value!.serieDocFiscal
+                          controller.notaFiscalSelecionada.value!.serieDocFiscal
                               .toString(),
                           style: textStyle(
                             fontWeight: FontWeight.normal,
@@ -301,10 +304,10 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                     ),
                     Expanded(
                       flex: 2,
-                      child: TextComponent(
-                       controller.notaFiscalSelecionada.value!.dataEmissao.toString(),
-                        fontWeight: FontWeight.normal,
-                        fontSize: 12,
+                      child: SelectableText(
+                        DateFormat('dd/MM/yyyy').format(DateTime.parse(
+                            controller
+                                .notaFiscalSelecionada.value!.dataEmissao!)),
                       ),
                     ),
                     Expanded(
@@ -338,63 +341,65 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
       ],
     );
   }
-  Widget _tabelaPecasAsteca(BuildContext context){
-    return Obx(() => controller.idNotaFiscalSelecionada.value != null 
-              ? Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+  Widget _tabelaPecasAsteca(BuildContext context) {
+    return Obx(
+      () => controller.idNotaFiscalSelecionada.value != null
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
                   children: [
-                      Row(
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(
-                              Icons.handyman_rounded,
-                                      size: 32,
-                                ),
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 150,
-                          ),
-                        Expanded(
-                          child: 
-                        Column(
-                           mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            controller.carregando.value != false 
-                        ? const EventoStatusWidget(
-                            color: Colors.pink,
-                            texto: 'Atendimento finalizado')
-                        : controller.carregando.value != true
-                            ? Obx(
-                                () => !controller.carregando.value
-                               ? ButtonComponent(
-                                   color: primaryColor,
-                                   colorHover: primaryColorHover,
-                                   onPressed: () {
-                                     _showProdutos(context);
-                                     controller.estoquePecasProduto(
-                                         controller.txtIdProduto.text);
-                                    //  controller
-                                    //      .buscarMotivosPecaCriarAsteca();
-                                   },
-                                   text: 'Adicionar peças',
-                                 )
-                               : const LoadingComponent(),
-                              )
-                            : const LoadingComponent(),
-                          ],
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.handyman_rounded,
+                          size: 32,
                         ),
-                        ),       
                       ],
                     ),
-                Container(
+                    const SizedBox(
+                      width: 150,
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          controller.carregando.value != false
+                              ? const EventoStatusWidget(
+                                  color: Colors.pink,
+                                  texto: 'Atendimento finalizado')
+                              : controller.carregando.value != true
+                                  ? Obx(
+                                      () => !controller.carregando.value
+                                          ? ButtonComponent(
+                                              color: primaryColor,
+                                              colorHover: primaryColorHover,
+                                              onPressed: () {
+                                                _showProdutos(context);
+                                                controller.estoquePecasProduto(
+                                                    controller
+                                                        .txtIdProduto.text);
+                                                //  controller
+                                                //      .buscarMotivosPecaCriarAsteca();
+                                              },
+                                              text: 'Adicionar peças',
+                                            )
+                                          : const LoadingComponent(),
+                                    )
+                                  : const LoadingComponent(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
                   height: Get.height * 0.40,
-                  child: controller.pedidoAsteca.value.itensAsteca !=null
+                  child: controller.pedidoAsteca.value.itensAsteca != null
                       ? ListView.builder(
-                          itemCount: controller.pedidoAsteca.value
-                                  .itensAsteca?.length ??
+                          itemCount: controller
+                                  .pedidoAsteca.value.itensAsteca?.length ??
                               controller.itemSolicitacaoCricaoAsteca.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
@@ -405,7 +410,7 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                       text: 1.toString()));
                                   return Card(
                                     child: Container(
-                                      padding: EdgeInsets.all(12),
+                                      padding: const EdgeInsets.all(12),
                                       decoration: BoxDecoration(
                                           color: _.statusSaldoPeca(index),
                                           border: Border(
@@ -422,7 +427,7 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                         children: [
                                           Row(
                                             children: [
-                                              Expanded(
+                                              const Expanded(
                                                 child: TextComponent(
                                                   'ID',
                                                   fontWeight: FontWeight.bold,
@@ -434,12 +439,12 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 12,
                                           ),
                                           Row(
                                             children: [
-                                              Expanded(
+                                              const Expanded(
                                                 child: TextComponent(
                                                   'Nome',
                                                   fontWeight: FontWeight.bold,
@@ -452,12 +457,12 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 12,
                                           ),
                                           Row(
                                             children: [
-                                              Expanded(
+                                              const Expanded(
                                                 child: TextComponent(
                                                   'Nº Peças',
                                                   fontWeight: FontWeight.bold,
@@ -469,12 +474,12 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 12,
                                           ),
                                           Row(
                                             children: [
-                                              Expanded(
+                                              const Expanded(
                                                 child: TextComponent(
                                                   'Valor R\$',
                                                   fontWeight: FontWeight.bold,
@@ -486,12 +491,12 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 12,
                                           ),
                                           Row(
                                             children: [
-                                              Expanded(
+                                              const Expanded(
                                                 child: TextComponent(
                                                   'Subtotal R\$',
                                                   fontWeight: FontWeight.bold,
@@ -503,12 +508,12 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 12,
                                           ),
                                           Row(
                                             children: [
-                                              Expanded(
+                                              const Expanded(
                                                 child: TextComponent(
                                                   'Saldo',
                                                   fontWeight: FontWeight.bold,
@@ -520,14 +525,14 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 24,
                                           ),
-                                          TextComponent(
+                                          const TextComponent(
                                             'Quantidade',
                                             fontWeight: FontWeight.bold,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 12,
                                           ),
                                           Row(
@@ -537,7 +542,8 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               IconButton(
                                                 color: Colors.red,
                                                 onPressed: () {
-                                                  controller.removerQuantidade(index);
+                                                  controller
+                                                      .removerQuantidade(index);
                                                   _.buildSituacaoEstoque(index);
                                                 },
                                                 icon: const Icon(
@@ -562,7 +568,9 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               IconButton(
                                                 color: Colors.green,
                                                 onPressed: () {
-                                                  controller.adicionarQuantidade(index);
+                                                  controller
+                                                      .adicionarQuantidade(
+                                                          index);
                                                   _.buildSituacaoEstoque(index);
                                                 },
                                                 icon: const Icon(
@@ -571,7 +579,7 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 24,
                                           ),
                                           Padding(
@@ -596,10 +604,9 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(5)),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
+                                                      child: const Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
                                                                 vertical: 10),
                                                         child: Icon(
                                                           Icons.delete_rounded,
@@ -623,10 +630,12 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                           })
                       : Container(),
                 ),
-                  ],
-              ) : Container(),
+              ],
+            )
+          : Container(),
     );
   }
+
   Widget _buildBotaoPrincipal(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -645,20 +654,20 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
           width: 150,
         ),
         Obx(() => controller.pedidoAsteca.value.itensAsteca != null
-        ? Expanded(
-          child: SizedBox(
-            child: ButtonComponent(
-              color: primaryColor,
-              onPressed: () async {
-                 if (await controller.salvarAsteca()) {
-                       Get.offAllNamed('/home');
-                 }
-              }, text: 'Criar Asteca'
-              ,
-            ),
-          ),
-        ): Container()
-        ),
+            ? Expanded(
+                child: SizedBox(
+                  child: ButtonComponent(
+                    color: primaryColor,
+                    onPressed: () async {
+                      if (await controller.salvarAsteca()) {
+                        Get.offAllNamed('/astecas');
+                      }
+                    },
+                    text: 'Criar Asteca',
+                  ),
+                ),
+              )
+            : Container()),
       ],
     );
   }
@@ -746,7 +755,7 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                             children: [
                                               Row(
                                                 children: [
-                                                 const TextComponent(
+                                                  const TextComponent(
                                                     'ID: ',
                                                     fontWeight: FontWeight.bold,
                                                   ),
@@ -755,17 +764,22 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                                   ),
                                                   Expanded(
                                                     child: TextComponent(
-                                                  controller.pecaSelecionada[index].produtoPeca.idPecaEstoque.toString(),
+                                                      controller
+                                                          .pecaSelecionada[
+                                                              index]
+                                                          .produtoPeca
+                                                          .idPecaEstoque
+                                                          .toString(),
                                                     ),
                                                   ),
                                                   const SizedBox(
                                                     width: 8,
                                                   ),
-                                                 const TextComponent(
+                                                  const TextComponent(
                                                     'Cod.Fábrica: ',
                                                     fontWeight: FontWeight.bold,
                                                   ),
-                                                 const SizedBox(
+                                                  const SizedBox(
                                                     width: 2,
                                                   ),
                                                   Expanded(
@@ -789,7 +803,8 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                                   TextComponent(
                                                     '${controller.pecaSelecionada[index].produtoPeca.peca?.numero}',
                                                   ),
-                                                 const  Expanded(child: SizedBox(
+                                                  const Expanded(
+                                                      child: SizedBox(
                                                     width: 2,
                                                   )),
                                                   const TextComponent(
@@ -803,7 +818,7 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                                               ),
                                               Row(
                                                 children: [
-                                                 const  TextComponent(
+                                                  const TextComponent(
                                                     'Nome: ',
                                                     fontWeight: FontWeight.bold,
                                                   ),
@@ -867,7 +882,7 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                         },
                         text: 'Cancelar',
                       ),
-                     const SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       ButtonComponent(
@@ -964,227 +979,249 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                 Obx(
                   () => !controller.carregandoNotasFiscais.value
                       ? SizedBox(
-                        height: Get.height / 2,
-                        width: Get.width,
+                          height: Get.height / 2,
+                          width: Get.width,
                           child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: controller.documentosFiscais.length,
-                            itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                controller.selecionarNotaFiscal(
-                                    controller.documentosFiscais[index]);
-                              },
-                              child: GetBuilder<SolicitacaoAstecaService>(
-                                builder: (_) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      color: _.idNotaFiscalSelecionada.value == _.documentosFiscais[index].idDocumentoFiscal 
-                                      ? const Color.fromRGBO(24, 2, 153, 0.2)
-                                      : Colors.white,
-                                      border: Border.all(
-                                        width: 1,
-                                         color: _.idNotaFiscalSelecionada.value == _.documentosFiscais[index].idDocumentoFiscal
-                                            ? primaryColor
-                                            : const Color.fromRGBO(238, 238, 238, 1),  
-                                      ), 
-                                    ),
-                                    alignment: Alignment.center,
-                                    margin: const EdgeInsets.symmetric(vertical: 8),
-                                    child: CardWidget(
-                                      widget: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Column(
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                const TextComponent(
-                                                  'NF',
-                                                  fontWeight: FontWeight.bold,
-                                                  ),
-                                                TextComponent(
-                                                  '${controller.documentosFiscais[index].idDocumentoFiscal}',
-                                                  )
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 12,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                const TextComponent(
-                                                  'Série',
-                                                  fontWeight: FontWeight.bold,
-                                                  ),
-                                                TextComponent(
-                                                  '${controller.documentosFiscais[index].serieDocFiscal}',
-                                                  )
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 12,
-                                            ),
-                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                               const  TextComponent(
-                                                  'Dt. Emissão',
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                TextComponent(
-                                                  '',
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontSize: 12),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 12,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                const Expanded(
-                                                    child: TextComponent(
-                                                  'Desc',
-                                                  fontWeight: FontWeight.bold,
-                                                )),
-                                                const SizedBox(
-                                                  width: 12,
-                                                ),
-                                                Expanded(
-                                                    child: Text(
-                                                  controller.documentosFiscais[index].descricao.toString(),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: textStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 12),
-                                                )),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 12,
-                                            ),
-                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                               const  Expanded(
-                                                    child: TextComponent(
-                                                  'Fornecedor',
-                                                  fontWeight: FontWeight.bold,
-                                                )),
-                                               const SizedBox(
-                                                  width: 12,
-                                                ),
-                                                Expanded(
-                                                    child: Text(
-                                                  controller.documentosFiscais[index].fornecedor.toString(),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: textStyle(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 12),
-                                                )),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 12,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                const TextComponent(
-                                                  'Ação',
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                ButtonAcaoWidget(detalhe: () {
-                                                  var idDocumentoFiscal =
-                                                      controller
-                                                          .documentosFiscais[index]
-                                                          .idDocumentoFiscal;
-                                                  // if (numeromaxguias < 1) {
-                                                  //   var Url =
-                                                  //       html.window.location;
-                                                  //   html.window.open(
-                                                  //       Url.toString()
-                                                  //               .split('#')[0] +
-                                                  //           '/#/astecas/itens-nf/' +
-                                                  //           idDocumentoFiscal
-                                                  //               .toString(),
-                                                  //       'new tab');
-                                                  //   numeromaxguias++;
-                                                  // } else {
-                                                  //   Notificacao.snackBar(
-                                                  //       'Já existe uma guia aberta!',
-                                                  //       tipoNotificacao:
-                                                  //           TipoNotificacaoEnum
-                                                  //               .error);
-                                                  // }
-                                                })
-                                              ],
-                                            ),
-                                          ],
+                              shrinkWrap: true,
+                              itemCount: controller.documentosFiscais.length,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    controller.selecionarNotaFiscal(
+                                        controller.documentosFiscais[index]);
+                                  },
+                                  child: GetBuilder<SolicitacaoAstecaService>(
+                                    builder: (_) {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                          color:
+                                              _.idNotaFiscalSelecionada.value ==
+                                                      _.documentosFiscais[index]
+                                                          .idDocumentoFiscal
+                                                  ? const Color.fromRGBO(
+                                                      24, 2, 153, 0.2)
+                                                  : Colors.white,
+                                          border: Border.all(
+                                            width: 1,
+                                            color: _.idNotaFiscalSelecionada
+                                                        .value ==
+                                                    _.documentosFiscais[index]
+                                                        .idDocumentoFiscal
+                                                ? primaryColor
+                                                : const Color.fromRGBO(
+                                                    238, 238, 238, 1),
+                                          ),
                                         ),
-                                    )),
-                                  );
-                                },
-                              ),
-                            );
-                          }),
+                                        alignment: Alignment.center,
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 8),
+                                        child: CardWidget(
+                                            widget: Container(
+                                          padding: const EdgeInsets.all(8),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const TextComponent(
+                                                    'NF',
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  TextComponent(
+                                                    '${controller.documentosFiscais[index].idDocumentoFiscal}',
+                                                  )
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 12,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const TextComponent(
+                                                    'Série',
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  TextComponent(
+                                                    '${controller.documentosFiscais[index].serieDocFiscal}',
+                                                  )
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 12,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const TextComponent(
+                                                    'Dt. Emissão',
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  TextComponent('',
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontSize: 12),
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 12,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Expanded(
+                                                      child: TextComponent(
+                                                    'Desc',
+                                                    fontWeight: FontWeight.bold,
+                                                  )),
+                                                  const SizedBox(
+                                                    width: 12,
+                                                  ),
+                                                  Expanded(
+                                                      child: Text(
+                                                    controller
+                                                        .documentosFiscais[
+                                                            index]
+                                                        .descricao
+                                                        .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: textStyle(
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontSize: 12),
+                                                  )),
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 12,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Expanded(
+                                                      child: TextComponent(
+                                                    'Fornecedor',
+                                                    fontWeight: FontWeight.bold,
+                                                  )),
+                                                  const SizedBox(
+                                                    width: 12,
+                                                  ),
+                                                  Expanded(
+                                                      child: Text(
+                                                    controller
+                                                        .documentosFiscais[
+                                                            index]
+                                                        .fornecedor
+                                                        .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: textStyle(
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontSize: 12),
+                                                  )),
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 12,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const TextComponent(
+                                                    'Ação',
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  ButtonAcaoWidget(detalhe: () {
+                                                    var idDocumentoFiscal =
+                                                        controller
+                                                            .documentosFiscais[
+                                                                index]
+                                                            .idDocumentoFiscal;
+                                                    // if (numeromaxguias < 1) {
+                                                    //   var Url =
+                                                    //       html.window.location;
+                                                    //   html.window.open(
+                                                    //       Url.toString()
+                                                    //               .split('#')[0] +
+                                                    //           '/#/astecas/itens-nf/' +
+                                                    //           idDocumentoFiscal
+                                                    //               .toString(),
+                                                    //       'new tab');
+                                                    //   numeromaxguias++;
+                                                    // } else {
+                                                    //   Notificacao.snackBar(
+                                                    //       'Já existe uma guia aberta!',
+                                                    //       tipoNotificacao:
+                                                    //           TipoNotificacaoEnum
+                                                    //               .error);
+                                                    // }
+                                                  })
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                      );
+                                    },
+                                  ),
+                                );
+                              }),
                         )
                       : const LoadingComponent(),
-                    ),
-                    const SizedBox(
-                        height: 30,
-                    ),
-                    Container(
-                margin: const EdgeInsets.only(
-                  top: 12,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ButtonComponent(
-                      color: Colors.red,
-                      onPressed: () {
-                        controller.confirmarSelecaoNotaFiscal(tipoSelecao: 0);
-                        controller.carregandoNotasFiscais.value = false;
-                        Get.back();
-                      },
-                      text: 'Cancelar',
-                    ),
-                   const  SizedBox(
-                      width: 8,
-                    ),
-                    ButtonComponent(
-                      color: const Color.fromRGBO(4, 4, 145, 1),
-                      onPressed: () {
-                         if (controller.idNotaFiscalSelecionada.value == null) {
-                               Notificacao.snackBar('Nota Fiscal não selecionada',
-                                      tipoNotificacao: TipoNotificacaoEnum.error);
-                                  return;   
+                const SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  margin: const EdgeInsets.only(
+                    top: 12,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ButtonComponent(
+                        color: Colors.red,
+                        onPressed: () {
+                          controller.confirmarSelecaoNotaFiscal(tipoSelecao: 0);
+                          controller.carregandoNotasFiscais.value = false;
+                          Get.back();
+                        },
+                        text: 'Cancelar',
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      ButtonComponent(
+                        color: const Color.fromRGBO(4, 4, 145, 1),
+                        onPressed: () {
+                          if (controller.idNotaFiscalSelecionada.value ==
+                              null) {
+                            Notificacao.snackBar('Nota Fiscal não selecionada',
+                                tipoNotificacao: TipoNotificacaoEnum.error);
+                            return;
                           }
-                        controller.confirmarSelecaoNotaFiscal(tipoSelecao: 1);
-                        Get.back();
-                      },
-                      text: 'Confirmar',
-                    ),
-                  ],
+                          controller.confirmarSelecaoNotaFiscal(tipoSelecao: 1);
+                          Get.back();
+                        },
+                        text: 'Confirmar',
+                      ),
+                    ],
+                  ),
                 ),
-              ),
               ],
             ),
           );
@@ -1215,7 +1252,7 @@ class SolicitacaoAstecaCriar extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               _camposIniciais(context),
-                               _tabelaPecasAsteca(context),
+                              _tabelaPecasAsteca(context),
                               // _buildCamposImagensNumeroSerie(context),
                               // _buildCamposImagensCondicaoProduto(),
                               // _buildCamposImagensDefeitos(),

@@ -76,18 +76,41 @@ class SolicitacaoAstecaRepository {
     return [];
   }
 
+  Future<List<SolicitacaoAstecaModel>> buscarSolicitacoes() async {
+    Token token = _tokenService.get();
+    var error;
+    Response response = await get(await _baseService.getUrl('/asteca/'),
+        headers: token.sendToken());
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      List<SolicitacaoAstecaModel> solicitacoes = data
+          .map<SolicitacaoAstecaModel>(
+              (data) => SolicitacaoAstecaModel.fromJson(data))
+          .toList();
+      return solicitacoes;
+    } else if (response.statusCode == 401) {
+      _tokenService.delete();
+      error = jsonDecode(response.body)['message'];
+      Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
+      gett.Get.to(const SplashScreen());
+    }
+
+    return [];
+  }
+
   Future<bool> novaSolicitacao(SolicitacaoAstecaModel asteca) async {
     Token token = _tokenService.get();
     var error;
-    bool result = false; 
-    Response response = await post(await _baseService.getUrl('/asteca/'),
-        headers: {'Content-Type': 'application/json', ...token.sendToken()},
-        body: jsonEncode(asteca),
-        );
+    bool result = false;
+    Response response = await post(
+      await _baseService.getUrl('/asteca/'),
+      headers: {'Content-Type': 'application/json', ...token.sendToken()},
+      body: jsonEncode(asteca),
+    );
     if (response.statusCode == 201) {
       result = true;
     } else if (response.statusCode == 401) {
-       _tokenService.delete();
+      _tokenService.delete();
       error = jsonDecode(response.body)['message'];
       Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
       gett.Get.to(const SplashScreen());
@@ -98,5 +121,65 @@ class SolicitacaoAstecaRepository {
       result = false;
     }
     return result;
+  }
+
+  Future<SolicitacaoAstecaModel> solicitacaoId({required int id}) async {
+    Token token = _tokenService.get();
+    var error;
+    late SolicitacaoAstecaModel solicitacao;
+    if (id.toString().isEmpty) {
+      Notificacao.snackBar('Id não passado no parametro!',
+          tipoNotificacao: TipoNotificacaoEnum.error);
+    } else {
+      Response response = await get(
+          await _baseService.getUrl('/asteca/' + id.toString()),
+          headers: token.sendToken());
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        solicitacao = SolicitacaoAstecaModel.fromJson(data);
+      } else if (response.statusCode == 401) {
+        _tokenService.delete();
+        error = jsonDecode(response.body)['message'];
+        Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
+        gett.Get.to(const SplashScreen());
+      } else {
+        error = jsonDecode(response.body)['message'];
+        Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
+      }
+    }
+    return solicitacao;
+  }
+
+  Future<bool> atualizarSoliciitacao(SolicitacaoAstecaModel asteca,
+      {required int situacao}) async {
+    Token token = _tokenService.get();
+    var error;
+    late bool retorno;
+    if (situacao.toString().isEmpty) {
+      Notificacao.snackBar('Situação deve ser informada!',
+          tipoNotificacao: TipoNotificacaoEnum.error);
+    } else {
+      Response response = await put(
+        await _baseService.getUrl('/asteca/' + situacao.toString()),
+        body: jsonEncode(asteca),
+        headers: {'Content-Type': 'application/json', ...token.sendToken()},
+      );
+      if (response.statusCode == 200) {
+        retorno = true;
+      } else if (response.statusCode == 401) {
+        retorno = false;
+        error = jsonDecode(response.body)['message'];
+        _tokenService.delete();
+        error = jsonDecode(response.body)['message'];
+        Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
+        gett.Get.to(const SplashScreen());
+      } else {
+        retorno = false;
+        error = jsonDecode(response.body)['message'];
+        Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
+      }
+    }
+    return retorno;
   }
 }

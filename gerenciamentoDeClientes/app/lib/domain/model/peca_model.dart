@@ -108,7 +108,7 @@ class Peca extends AbstractEntity {
         json['produto'] != null ? Produto.fromJson(json['produto']) : null;
   }
    
-   @override
+  @override
     toJson(){
       final Map<String, dynamic> data = <String, dynamic>{};
       data['idPeca'] = idPeca;

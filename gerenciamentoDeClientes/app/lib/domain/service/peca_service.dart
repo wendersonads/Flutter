@@ -43,4 +43,34 @@ class PecaService extends GetxController {
       update();
     }
   }
+
+  adicionarPeca(Peca novaPeca) async {
+    try {
+      carregando(true);
+      await pecaRepository.adicionarPeca(novaPeca);
+    } catch (e) {
+     null;
+    } finally {
+      carregando(false);
+      update();
+    }
+  }
+
+
+  Future<void> deletarPeca(int idPeca) async {
+    try {
+      print('Fornecedor para deletar: ${idPeca}');
+
+      carregando(true);
+      if (idPeca != null) {
+        await pecaRepository.deletarPeca(idPeca);
+      }
+      listaPecas();
+    } catch (e) {
+      null;
+    } finally {
+      carregando(false);
+      update();
+    }
+  }
 }

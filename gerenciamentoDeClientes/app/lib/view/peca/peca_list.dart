@@ -1,3 +1,5 @@
+import 'package:auth_migration/domain/model/peca_model.dart';
+import 'package:auth_migration/view/peca/peca_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -142,6 +144,56 @@ class PecaList extends StatelessWidget {
                                                     .toString() ??
                                                 '',
                                           ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                          icon: Icon(Icons.edit),
+                                          onPressed: () {
+                                            print(
+                                                'Fornecedor selecionado: ${service.pecas[index]}');
+                                            Get.to(
+                                              () => PecaEditar(
+                                                  peca: service.pecas[index]),
+                                            );
+                                          },
+                                        ),
+                                        IconButton(
+                                          icon: Icon(Icons.delete),
+                                          onPressed: () {
+                                            Get.defaultDialog(
+                                              title: 'Confirmar Exclusão',
+                                              content: Text(
+                                                'Deseja realmente excluir o fornecedor?',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              confirm: ElevatedButton(
+                                                onPressed: () async {
+                                                  Get.back();
+                                                  service.deletarPeca(
+                                                    service.pecas[index].idPeca!
+                                                        as int,
+                                                  );
+                                                  service.pecas.removeAt(index);
+
+                                                  // Atualiza a UI
+                                                  Get.forceAppUpdate();
+
+                                                  // Recarrega a lista após a exclusão
+                                                  await service.listaPecas();
+                                                },
+                                                child: Text('Confirmar'),
+                                              ),
+                                              cancel: ElevatedButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                child: Text('Cancelar'),
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ],
                                     ),

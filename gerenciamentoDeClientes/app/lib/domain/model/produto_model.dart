@@ -8,9 +8,9 @@ class Produto extends AbstractEntity {
   Fornecedor? fornecedor;
 
   Produto({
-     this.idProduto,
-     this.descricao,
-     this.fornecedor,
+    this.idProduto,
+    this.descricao,
+    this.fornecedor,
   });
 
   factory Produto.fromMap(Map<String, dynamic> map) {

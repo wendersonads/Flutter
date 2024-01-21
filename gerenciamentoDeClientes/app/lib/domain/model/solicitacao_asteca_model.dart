@@ -7,7 +7,10 @@ class SolicitacaoAstecaModel extends AbstractEntity {
   int? idAsteca;
   int? idProduto;
   String? descricaoProduto;
-  DateTime? dataCriacao;
+  String? dataCriacao;
+  String? dataInicioAsteca;
+  String? dataCancela;
+  String? dataFinaliza;
   int? situacaoAsteca;
   int? tipoAsteca;
   DocumentoFiscal? documentoFiscal;
@@ -19,6 +22,9 @@ class SolicitacaoAstecaModel extends AbstractEntity {
     this.idProduto,
     this.descricaoProduto,
     this.dataCriacao,
+    this.dataInicioAsteca,
+    this.dataCancela,
+    this.dataFinaliza,
     this.situacaoAsteca,
     this.tipoAsteca,
     this.documentoFiscal,
@@ -38,7 +44,10 @@ class SolicitacaoAstecaModel extends AbstractEntity {
       idAsteca: map['idAsteca'],
       idProduto: map['idProduto'],
       descricaoProduto: map['descricaoProduto'],
-      dataCriacao: DateTime.parse(map['dataCriacao']),
+      dataCriacao:  map['dataCriacao'] ?? '',
+      dataInicioAsteca: map['dataInicioAsteca'] ?? '',
+      dataCancela: map['dataCancela'] ?? '',
+      dataFinaliza : map['dataFinaliza'] ?? '',
       situacaoAsteca: map['situacaoAsteca'],
       tipoAsteca: map['tipoAsteca'],
       documentoFiscal: map['documentoFiscal'] != null
@@ -55,7 +64,10 @@ class SolicitacaoAstecaModel extends AbstractEntity {
     idAsteca = json['idAsteca'];
     idProduto = json['idProduto'];
     descricaoProduto = json['descricaoProduto'];
-    dataCriacao = DateTime.parse(json['dataCriacao']);
+    dataCriacao = json['dataCriacao'] ?? '';
+    dataInicioAsteca = json['dataInicioAsteca'] ?? '';
+    dataCancela = json['dataCancela'] ?? '';
+    dataFinaliza = json['dataFinaliza'] ?? '';
     situacaoAsteca = json['situacaoAsteca'];
     tipoAsteca = json['tipoAsteca'];
 
@@ -68,12 +80,9 @@ class SolicitacaoAstecaModel extends AbstractEntity {
     motivoCriacaoAsteca = json['motivoCriacaoAsteca'] != null
         ? AstecaMotivo.fromJson(json['motivoCriacaoAsteca'])
         : null;
-
-    // Adaptando para a lista de ItemSolicitacaoAsteca
-    itensAsteca = <ItemSolicitacaoAsteca>[];
-    json['itensAsteca'].forEach((i) {
-      itensAsteca?.add(ItemSolicitacaoAsteca.fromJson(i));
-    });
+     itensAsteca = json['itensAsteca'].map<ItemSolicitacaoAsteca>((itens){
+      return ItemSolicitacaoAsteca.fromJson(itens);
+     }).toList();
   }
 
  @override
@@ -82,7 +91,10 @@ Map<String, dynamic> toJson() {
   data['idAsteca'] = idAsteca;
   data['idProduto'] = idProduto;
   data['descricaoProduto'] = descricaoProduto;
-  data['dataCriacao'] = dataCriacao?.toIso8601String();
+  data['dataCriacao'] = dataCriacao ?? '';
+  data['dataInicioAsteca'] = dataInicioAsteca ?? '';
+  data['dataCancela'] = dataCancela ?? '';
+  data['dataFinaliza'] = dataFinaliza ?? '';
   data['situacaoAsteca'] = situacaoAsteca;
   data['tipoAsteca'] = tipoAsteca;
   // Adaptando para o objeto DocumentoFiscal

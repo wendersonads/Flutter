@@ -43,10 +43,13 @@ public class SolicitacaoAstecaModel {
 
     private String descricaoProduto;
 
-    private String observacao;
-
     private LocalDateTime dataCriacao;
 
+    private LocalDateTime dataInicioAsteca;
+
+    private LocalDateTime dataCancela;
+    
+    private LocalDateTime dataFinaliza;
     //"1- Em aberto, 2- Em Execução, 3- Cancelada, 4- Finalizada")
     private Integer situacaoAsteca;
 

@@ -35,39 +35,28 @@ public class PerfilUsuarioService {
         return user.get();
     }
 
-    public Account vincularPerfil(LoginDTO dto, Long id) {
-
-        Optional<Account> user = repository.findByUsernameAndPassword(dto.getUsername(), dto.getPassword());
-
+    public Account vincularPerfil(Long idconta , Long id) {
+        Optional<Account> user = repository.findById(idconta);
         Optional<PerfilUsuarioModel> perfil = perfilRepository.findById(id);
-
         try {
 
-            if (user.isPresent()) {
-
-                // if (user.get().getPerfilUsuario().getIdPerfilUsuario() ==
-                // perfil.get().getIdPerfilUsuario()) {
-
-                // throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                // "O perfil informado ja encontrasse vinculado ao usuário!");
-
-                // }
-
-                if (perfil == null) {
-
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                            "Perfil deve ser escolhido para fazer o vinculo!");
-
-                }
-                user.get().setPerfilUsuario(perfil.get());
-
+            if (user.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado!");
             }
+            if (perfil.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Perfil inváliido!");
+            }
+
+             user.get().setPerfilUsuario(perfil.get());
 
             return repository.save(user.get());
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao vincular Perfil! " + e.getMessage());
         }
 
+    }
+    public List<PerfilUsuarioModel> listarTodos(){
+        return perfilRepository.findAll();
     }
 
 }

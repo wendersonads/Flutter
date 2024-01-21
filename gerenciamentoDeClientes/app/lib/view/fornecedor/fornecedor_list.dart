@@ -191,12 +191,20 @@ class FornecedorList extends StatelessWidget {
                                                   service.fornecedores
                                                       .removeAt(index);
 
-                                                  // Atualiza a UI
-                                                  Get.forceAppUpdate();
-
                                                   // Recarrega a lista após a exclusão
                                                   await service
                                                       .listaFornecedors();
+
+                                                  // Atualiza a UI
+                                                  Get.forceAppUpdate();
+
+                                                  Get.toNamed(
+                                                      "/pecas"); // Redireciona para a página inicial
+                                                  Get.toNamed(
+                                                      "/fornecedores"); // Em seguida, redireciona para a página de fornecedores
+
+                                                  // Recarrega a lista após a exclusão
+                                                  Get.toNamed("/fornecedores");
                                                 },
                                                 child: Text('Confirmar'),
                                               ),

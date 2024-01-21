@@ -26,8 +26,8 @@ var fieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.only(top: 5, bottom: 10, left: 10),
 );
 
-Color primaryColor = Colors.blue;
-Color primaryColorHover = Color.fromARGB(255, 102, 113, 6);
+Color primaryColor = Color.fromARGB(255, 4, 4, 158);
+Color primaryColorHover = Color.fromARGB(255, 15, 189, 189);
 Color secundaryColor = HexColor('00CF80');
 Color secundaryColorHover = Color.fromARGB(177, 2, 178, 111);
 

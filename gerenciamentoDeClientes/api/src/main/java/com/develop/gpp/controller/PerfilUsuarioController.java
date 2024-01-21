@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.develop.gpp.domain.entity.Account;
 import com.develop.gpp.domain.entity.PerfilUsuarioFuncionalidades;
+import com.develop.gpp.domain.entity.PerfilUsuarioModel;
 import com.develop.gpp.domain.entity.dto.LoginDTO;
 import com.develop.gpp.domain.service.PerfilUsuarioService;
 
@@ -21,17 +22,27 @@ import com.develop.gpp.domain.service.PerfilUsuarioService;
 public class PerfilUsuarioController {
 
     @Autowired
-    private final PerfilUsuarioService service = new PerfilUsuarioService();
+    private  PerfilUsuarioService service;
+    
+    
+    public PerfilUsuarioController(PerfilUsuarioService service) {
+        this.service = service;
+    }
 
     @GetMapping("/user")
     public Account getUser(@RequestParam String username) {
         return service.getUser(username);
     }
 
-    @PostMapping("/vincular/{id}")
-    public Account vincularPerfil(@RequestBody LoginDTO dto, @PathVariable Long id) {
+    @PostMapping("/vincular")
+    public Account vincularPerfil(@RequestParam Long idconta, @RequestParam Long id) {
 
-        return service.vincularPerfil(dto, id);
+        return service.vincularPerfil(idconta, id);
+    }
+
+    @GetMapping("/")
+    public List<PerfilUsuarioModel> listaTodos(){
+        return service.listarTodos();
     }
 
 }

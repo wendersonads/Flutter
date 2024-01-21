@@ -1,3 +1,4 @@
+import 'package:auth_migration/view/produto/produto_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -89,7 +90,9 @@ class ProdutoList extends StatelessWidget {
                               ProdutoDetails(
                                 idProduto: produto.idProduto.toString(),
                                 nome: produto.descricao?.capitalize ?? '',
-                                fornecedor: produto.fornecedor?.nomeFornecedor.toString() ?? '',
+                                fornecedor: produto.fornecedor?.nomeFornecedor
+                                        .toString() ??
+                                    '',
                               ),
                             );
                           },
@@ -124,25 +127,65 @@ class ProdutoList extends StatelessWidget {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        SelectableText(
-                                          produto.descricao?.capitalize ?? '',
+                                        Flexible(
+                                          // Adiciona o Flexible para permitir que o texto quebre
+                                          child: SelectableText(
+                                            produto.descricao?.capitalize ?? '',
+                                            maxLines:
+                                                2, // Define o número máximo de linhas
+                                          ),
                                         ),
                                       ],
                                     ),
-                                    const SizedBox(height: 8),
                                     Row(
                                       children: [
-                                        const Expanded(
-                                          flex: 2,
-                                          child: TextComponent(
-                                            'Fornecedor',
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        IconButton(
+                                          icon: Icon(Icons.edit),
+                                          onPressed: () {
+                                            print(
+                                                'Fornecedor selecionado: ${service.produtos[index]}');
+                                            Get.to(
+                                              () => ProdutoEditar(
+                                                  produto:
+                                                      service.produtos[index]),
+                                            );
+                                          },
                                         ),
-                                        Expanded(
-                                          child: SelectableText(
-                                            produto.fornecedor?.nomeFornecedor.toString() ?? '',
-                                          ),
+                                        IconButton(
+                                          icon: Icon(Icons.delete),
+                                          onPressed: () {
+                                            Get.defaultDialog(
+                                              title: 'Confirmar Exclusão',
+                                              content: Text(
+                                                'Deseja realmente excluir o fornecedor?',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              confirm: ElevatedButton(
+                                                onPressed: () async {
+                                                  Get.back();
+                                                  service.deletarProduto(
+                                                    service.produtos[index]
+                                                        .idProduto!,
+                                                  );
+                                                  service.produtos
+                                                      .removeAt(index);
+
+                                                  // Atualiza a UI
+                                                  Get.forceAppUpdate();
+
+                                                  // Recarrega a lista após a exclusão
+                                                  await service.listaProdutos();
+                                                },
+                                                child: Text('Confirmar'),
+                                              ),
+                                              cancel: ElevatedButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                child: Text('Cancelar'),
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ],
                                     ),
