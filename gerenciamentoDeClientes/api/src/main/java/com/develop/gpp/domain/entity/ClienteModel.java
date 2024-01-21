@@ -23,15 +23,10 @@ public class ClienteModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer idCliente;
+  private Long idCliente;
 
   private String nome;
 
-  private String cpfCnpj;
-
   private String email;
-
-  @OneToMany(mappedBy = "cliente")
-  private List<EndClienteModel> enderecos;
 
 }
