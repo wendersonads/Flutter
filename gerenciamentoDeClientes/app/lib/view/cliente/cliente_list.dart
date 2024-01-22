@@ -165,30 +165,27 @@ class ClienteList extends StatelessWidget {
                                                 ),
                                                 confirm: ElevatedButton(
                                                   onPressed: () async {
-                                                    Get.back();
-                                                    service.deletarCliente(
+                                                    if (await service
+                                                        .deletarCliente(
                                                       service.clientes[index]
                                                           .idCliente!,
-                                                    );
-                                                    service.clientes
-                                                        .removeAt(index);
-                                                    Get.forceAppUpdate();
-                                                    await service
-                                                        .listaClientes(); // Fix: use listaClientes instead of lista
+                                                    )) {
+                                                      Get.offAllNamed(
+                                                          '/clientes');
+                                                    }
                                                   },
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                     backgroundColor:
-                                                        primaryColor, // Cor azul escuro
+                                                        primaryColor,
                                                   ),
                                                   child: Text('Confirmar'),
                                                 ),
                                                 cancel: ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
-                                                    backgroundColor: Colors
-                                                        .red, // Cor azul escuro
-                                                  ),
+                                                          backgroundColor:
+                                                              Colors.red),
                                                   onPressed: () {
                                                     Get.back();
                                                   },

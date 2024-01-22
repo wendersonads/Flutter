@@ -1,5 +1,6 @@
 import 'package:auth_migration/domain/model/cliente_model.dart';
 import 'package:auth_migration/domain/service/cliente_detalhe_service.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,6 +46,12 @@ class ClienteEdit extends StatelessWidget {
                       tipoNotificacao: TipoNotificacaoEnum.error);
                   return;
                 }
+                if (!EmailValidator.validate(
+                    controller.emailCliente.text.toString())) {
+                  Notificacao.snackBar('Email Inválido!',
+                      tipoNotificacao: TipoNotificacaoEnum.error);
+                  return;
+                }
                 if (await controller.editarCliente()) {
                   Get.offAllNamed('/clientes');
                 }
@@ -79,7 +86,6 @@ class ClienteEdit extends StatelessWidget {
             child: InputComponent(
               controller: controller.nomeCliente,
               hintText: 'Nome',
-              initialValue: controller.cliente.value.nome.toString(),
             ),
           ),
         ],
@@ -103,7 +109,6 @@ class ClienteEdit extends StatelessWidget {
             child: InputComponent(
               controller: controller.emailCliente,
               hintText: 'Email',
-              initialValue: controller.cliente.value.email.toString(),
             ),
           ),
         ],
@@ -113,42 +118,42 @@ class ClienteEdit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: const NavbarWidget(),
       drawer: const Sidebar(),
       resizeToAvoidBottomInset: false,
       body: Container(
         color: Colors.white,
-        child: Obx( () => !controller.carregandoCliente.value
-        ?Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Form(
-                            key: controller.formKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                _camposIniciais(context),
-                              ],
+        child: Obx(() => !controller.carregandoCliente.value
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: SingleChildScrollView(
+                              child: Form(
+                                key: controller.formKey,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _camposIniciais(context),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          _buildBotaoPrincipal(context),
+                        ],
                       ),
-                      _buildBotaoPrincipal(context),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ],
-          ) : Container()
-        ),
+                ],
+              )
+            : Container()),
       ),
     );
   }

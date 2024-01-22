@@ -45,7 +45,17 @@ class ClienteService extends GetxController {
     }
   }
 
-  void deletarCliente(int i) {}
+  Future<bool> deletarCliente(int i) async {
+    late bool retorno;
+    try {
+      retorno = await repository.deletarCliente(i);
+    } catch (e) {
+      retorno = false;
+      Notificacao.snackBar(e.toString(),
+          tipoNotificacao: TipoNotificacaoEnum.error);
+    }
+    return retorno;
+  }
 
   Future<bool> salvarCliente() async {
     late bool retorno = false;

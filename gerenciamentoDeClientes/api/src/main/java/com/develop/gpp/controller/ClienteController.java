@@ -30,8 +30,8 @@ public class ClienteController {
     public ClienteModel salvarCli(@RequestBody ClienteModel cli) {
         return servive.salvarCli(cli);
     }
-    @PostMapping("/{id}")
-    public ClienteModel editarCli(@PathVariable Long id, ClienteModel cli) {
+    @PutMapping("/{id}")
+    public ClienteModel editarCli(@PathVariable Long id, @RequestBody ClienteModel cli) {
         return servive.editarCli(id, cli);
     }
 

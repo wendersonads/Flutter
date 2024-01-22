@@ -8,15 +8,13 @@ import '../../shared/components/Notificacao.dart';
 class ClienteDetalheService extends GetxController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late int id;
-  late TextEditingController nomeCliente;
-  late TextEditingController emailCliente;
+  TextEditingController nomeCliente = TextEditingController();
+  TextEditingController emailCliente = TextEditingController();
   late Rx<ClienteModel> cliente;
   late ClienteRepository repository;
   var carregandoCliente = false.obs;
 
   ClienteDetalheService(Id) {
-    nomeCliente = TextEditingController();
-    emailCliente = TextEditingController();
     id = Id;
     cliente = ClienteModel().obs;
     repository = ClienteRepository();
@@ -32,6 +30,10 @@ class ClienteDetalheService extends GetxController {
     try {
       carregandoCliente(true);
       cliente.value = await repository.buscarPorId(id);
+      if (cliente.value != null) {
+        nomeCliente.text = cliente.value.nome!.toString();
+        emailCliente.text = cliente.value.email!.toString();
+      }
     } catch (e) {
       carregandoCliente(true);
       Notificacao.snackBar(e.toString(),
@@ -41,5 +43,17 @@ class ClienteDetalheService extends GetxController {
     }
   }
 
-  editarCliente() {}
+  Future<bool> editarCliente() async {
+    late bool retorno;
+    try {
+      cliente.value.nome = nomeCliente.text.toString();
+      cliente.value.email = emailCliente.text.toString();
+      retorno = await repository.editarCliente(id, cliente.value);
+    } catch (e) {
+      retorno = false;
+      Notificacao.snackBar(e.toString(),
+          tipoNotificacao: TipoNotificacaoEnum.error);
+    }
+    return retorno;
+  }
 }

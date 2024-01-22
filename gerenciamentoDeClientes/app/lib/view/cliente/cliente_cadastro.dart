@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:email_validator/email_validator.dart';
 
 import '../../shared/components/ButtonComponent.dart';
 import '../../shared/components/InputComponent.dart';
@@ -38,9 +39,17 @@ class ClienteCadastro extends StatelessWidget {
             child: ButtonComponent(
               color: primaryColor,
               onPressed: () async {
-                if (controller.nomeCliente.text.isEmpty || controller.emailCliente.text.isEmpty) {
-                      Notificacao.snackBar('Todos os campos são obrigatórios!', tipoNotificacao: TipoNotificacaoEnum.error);
-                      return;
+                if (controller.nomeCliente.text.isEmpty ||
+                    controller.emailCliente.text.isEmpty) {
+                  Notificacao.snackBar('Todos os campos são obrigatórios!',
+                      tipoNotificacao: TipoNotificacaoEnum.error);
+                  return;
+                }
+                if (!EmailValidator.validate(
+                    controller.emailCliente.text.toString())) {
+                  Notificacao.snackBar('Email Inválido!',
+                      tipoNotificacao: TipoNotificacaoEnum.error);
+                  return;
                 }
                 if (await controller.salvarCliente()) {
                   Get.offAllNamed('/clientes');

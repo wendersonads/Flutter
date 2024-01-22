@@ -56,7 +56,7 @@ class ClienteRepository {
 
       if (response.statusCode == 200) {
         retorno = true;
-        Notificacao.snackBar('Fornecedor criado com sucesso');
+        Notificacao.snackBar('Cliente criado com sucesso');
       } else {
         var error = jsonDecode(response.body)['message'];
         Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
@@ -64,7 +64,6 @@ class ClienteRepository {
       }
     } catch (e) {
       retorno = false;
-      print(e.toString());
       Notificacao.snackBar(e.toString(),
           tipoNotificacao: TipoNotificacaoEnum.error);
     }
@@ -72,34 +71,35 @@ class ClienteRepository {
     return retorno;
   }
 
-  Future<void> editarFornecedor(int id, ClienteModel cli) async {
+  Future<bool> editarCliente(int id, ClienteModel cli) async {
+    late bool retorno;
     try {
       Token token = _tokenService.get();
-
-      // Converte o objeto fornecedor para JSON
-      final cliEditadoJson = cli.toJson();
-
-      // Envia a requisição POST para o servidor
-      Response response = await post(
-        await _abstractService.getUrl('cliente/${id}'),
+      Response response = await put(
+        await _abstractService.getUrl('/cliente/${id}'),
         headers: {
           ...token.sendToken(),
           'Content-Type':
-              'application/json', // Certifique-se de incluir este cabeçalho
+              'application/json',
+          'Accept': 'application/json' 
         },
-        body: cliEditadoJson,
+        body: jsonEncode(cli),
       );
 
       if (response.statusCode == 200) {
-        Notificacao.snackBar('Fornecedor editado com sucesso');
+        retorno = true;
+        Notificacao.snackBar('Cliente editado com sucesso');
       } else {
+        retorno = false;
         var error = jsonDecode(response.body)['message'];
         Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
       }
     } catch (e) {
+      retorno = false;
       Notificacao.snackBar(e.toString(),
           tipoNotificacao: TipoNotificacaoEnum.error);
     }
+    return retorno;
   }
 
   Future<ClienteModel> buscarPorId(int id) async {
@@ -127,25 +127,28 @@ class ClienteRepository {
     return cliente;
   }
 
-  Future<void> deletarFornecedor(int idCli) async {
+  Future<bool> deletarCliente(int idCli) async {
+    late bool retorno = false;
     try {
       Token token = _tokenService.get();
-
-      // Envia a requisição DELETE para o servidor
       Response response = await delete(
         await _abstractService.getUrl('cliente/$idCli'),
         headers: token.sendToken(),
       );
-
       if (response.statusCode == 200) {
-        Notificacao.snackBar('Fornecedor deletado com sucesso');
+        retorno = true;
+        Notificacao.snackBar('Cliente deletado com sucesso');
       } else {
+        retorno = false;
         var error = jsonDecode(response.body)['message'];
         Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
       }
     } catch (e) {
+      retorno = false;
       Notificacao.snackBar(e.toString(),
           tipoNotificacao: TipoNotificacaoEnum.error);
     }
+
+    return retorno;
   }
 }

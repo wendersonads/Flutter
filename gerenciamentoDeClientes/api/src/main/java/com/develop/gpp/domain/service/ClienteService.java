@@ -42,7 +42,8 @@ public class ClienteService {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente não localizado!");
 
 		}
-		BeanUtils.copyProperties(cli, cliBanco, "id_cliente");
+		cliBanco.setNome(cli.getNome());
+		cliBanco.setEmail(cli.getEmail());
 
 		ClienteModel clienteAtualizado = clienteRepository.save(cliBanco);
 
