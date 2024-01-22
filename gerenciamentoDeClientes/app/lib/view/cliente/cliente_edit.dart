@@ -4,7 +4,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../domain/model/fornecedor_model.dart';
 import '../../domain/service/cliente_service.dart';
 import '../../shared/components/ButtonComponent.dart';
 import '../../shared/components/InputComponent.dart';

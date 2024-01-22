@@ -1,8 +1,6 @@
-import 'package:auth_migration/domain/model/peca_model.dart';
 import 'package:auth_migration/domain/service/cliente_service.dart';
 import 'package:auth_migration/shared/components/styles.dart';
 import 'package:auth_migration/view/cliente/cliente_edit.dart';
-import 'package:auth_migration/view/peca/peca_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

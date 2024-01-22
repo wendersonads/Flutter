@@ -2,7 +2,6 @@ import 'package:auth_migration/core/util/string_util.dart';
 import 'package:auth_migration/domain/service/login_service.dart';
 import 'package:auth_migration/shared/components/Notificacao.dart';
 import 'package:auth_migration/view/home/home_screen.dart';
-import 'package:auth_migration/view/peca/peca_list.dart';
 import 'package:auth_migration/view/register/register_screen.dart';
 import 'package:flutter/material.dart';
 

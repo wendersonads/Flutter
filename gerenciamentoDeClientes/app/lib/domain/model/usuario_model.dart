@@ -1,4 +1,3 @@
-import 'package:auth_migration/domain/model/fornecedor_model.dart';
 import 'package:auth_migration/domain/model/perfil_usuario.dart';
 
 class Usuario {

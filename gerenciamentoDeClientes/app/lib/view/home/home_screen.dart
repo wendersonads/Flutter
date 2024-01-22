@@ -1,4 +1,3 @@
-import 'package:auth_migration/view/peca/peca_list.dart';
 import 'package:auth_migration/widgets/sidebar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
