@@ -45,7 +45,7 @@ class NavbarMobile extends StatelessWidget {
                         color: Colors.white,
                       ),
                       onPressed: () => Scaffold.of(context).openDrawer()),
-                  Text('GPP',
+                  Text('CLI',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -70,10 +70,10 @@ class NavbarMobile extends StatelessWidget {
       shadowColor: Colors.transparent,
       title: GestureDetector(
           onTap: () {
-            Get.toNamed('/dashboard');
+            Get.toNamed('/home');
           },
           child: Text(
-            'GPP',
+            'CLI',
             style: textStyleTitulo,
           )),
       actions: [

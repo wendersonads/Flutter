@@ -57,11 +57,12 @@ class NavbarMobile extends StatelessWidget {
                     ),
                     onPressed: () => Scaffold.of(context).openDrawer(),
                   ),
-                  const Text('GPP',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24)),
+                  IconButton(
+                    onPressed: () => Get.to(const HomeScreen()),
+
+                  icon: const Icon(
+                    Icons.home,
+                    color: Colors.white,)),
                 ],
               ),
               Row(
@@ -91,7 +92,7 @@ class NavbarMobile extends StatelessWidget {
             );
           },
           child: Text(
-            'GPP',
+            'CLI',
             style: textStyleTitulo,
           )),
       actions: [

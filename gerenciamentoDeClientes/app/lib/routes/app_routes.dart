@@ -5,6 +5,9 @@ import 'package:auth_migration/view/asteca/solicitacao_asteca_criar.dart';
 import 'package:auth_migration/view/asteca/solicitacao_asteca_detalhe.dart';
 import 'package:auth_migration/view/asteca/solicitacao_asteca_list.dart';
 import 'package:auth_migration/view/asteca/view/solicitacao_asteca_detalhe_view.dart';
+import 'package:auth_migration/view/cliente/cliente_edit.dart';
+import 'package:auth_migration/view/cliente/cliente_list.dart';
+import 'package:auth_migration/view/cliente/view/cliente_detalhe_view.dart';
 import 'package:auth_migration/view/home/home_screen.dart';
 import 'package:auth_migration/view/login/login_screen.dart';
 import 'package:auth_migration/view/produto/produto_list.dart';
@@ -13,6 +16,7 @@ import 'package:auth_migration/view/usuarios/view/usuario_detalhe_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../view/cliente/cliente_cadastro.dart';
 import '../view/fornecedor/fornecedor_form.dart';
 import '../view/fornecedor/fornecedor_list.dart';
 import '../view/peca/peca_form.dart';
@@ -88,6 +92,9 @@ class AuthGuard extends GetMiddleware {
     GetPage(name: '/astecas', page: () => SolicitacaoAstecaList()),
     //GetPage(name: '/astecas/:id', page: () =>SolicitacaoAstecaDetalheView(id: int.parse(Get.parameters['id']!))),
     GetPage(name: '/usuarios', page: () => const UsuarioList()),
-    GetPage(name: '/usuarios/:id', page: () => UsuarioDetalheView(id: int.parse(Get.parameters['id']!)))
+    GetPage(name: '/usuarios/:id', page: () => UsuarioDetalheView(id: int.parse(Get.parameters['id']!))),
+    GetPage(name: '/clientes', page: () => const ClienteList()),
+    GetPage(name: '/criar-cliente', page: () =>  ClienteCadastro()),
+    GetPage(name: '/clientes/:id', page: () => ClienteDetalheView(id: int.parse(Get.parameters['id']!))),
   ];
 }

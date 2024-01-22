@@ -13,7 +13,7 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
      GetMaterialApp(
-      title: 'GPP',
+      title: 'CLI',
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       getPages: AuthGuard.appRoutes,

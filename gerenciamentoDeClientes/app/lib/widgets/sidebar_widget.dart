@@ -35,7 +35,7 @@ class Sidebar extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'GPP',
+                          'CLI',
                           style: textStyleTitulo,
                         ),
                         TextComponent('Versão: ${info}', fontSize: 12, color: Colors.grey.shade400)

@@ -1,7 +1,7 @@
-
 import 'package:auth_migration/view/peca/peca_list.dart';
 import 'package:auth_migration/widgets/sidebar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../shared/widgets/NavBarWidget.dart';
 
@@ -13,13 +13,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
- 
-
   @override
   void initState() {
     super.initState();
-    
   }
 
   @override
@@ -33,24 +29,20 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => const PecaList(),
-                    ),
-                    (route) => false,
-                  );
-                },
-                child: const Text('LISTA DE PEÇAS'),
-              ),
+              Stack(
+                children: [
+                  Image.network(
+                    'https://cdn.pixabay.com/photo/2017/03/31/17/44/avatar-2191932_1280.png',
+                    fit: BoxFit.cover,
+                  ),
+
+                  // Add other widgets on top of the background image here
+                ],
+              )
             ],
           ),
         ),
       ),
     );
   }
-
- 
 }

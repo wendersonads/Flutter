@@ -10,7 +10,7 @@ import '../../shared/components/TextComponent.dart';
 import '../../shared/widgets/CardWidget.dart';
 import '../../shared/widgets/NavBarWidget.dart';
 import '../../widgets/sidebar_widget.dart';
-import 'fornecedor_details.dart';
+import '../cliente/cliente_edit.dart';
 import 'fornecedor_edit.dart';
 
 class FornecedorList extends StatelessWidget {
@@ -86,10 +86,10 @@ class FornecedorList extends StatelessWidget {
                           onTap: () {
                             print(
                                 'Clicou no fornecedor: ${service.fornecedores[index].idFornecedor}');
-                            Get.to(
-                              () => FornecedorDetails(
-                                  fornecedor: service.fornecedores[index]),
-                            );
+                            // Get.to(
+                            //   () => FornecedorDetails(
+                            //       fornecedor: service.fornecedores[index]),
+                            // );
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 8),
@@ -178,7 +178,7 @@ class FornecedorList extends StatelessWidget {
                                             Get.defaultDialog(
                                               title: 'Confirmar Exclusão',
                                               content: Text(
-                                                'Deseja realmente excluir o fornecedor?',
+                                                'Deseja realmente excluir o Cliente?',
                                                 textAlign: TextAlign.center,
                                               ),
                                               confirm: ElevatedButton(
@@ -190,20 +190,13 @@ class FornecedorList extends StatelessWidget {
                                                   );
                                                   service.fornecedores
                                                       .removeAt(index);
-
-                                                  // Recarrega a lista após a exclusão
                                                   await service
                                                       .listaFornecedors();
-
-                                                  // Atualiza a UI
                                                   Get.forceAppUpdate();
-
                                                   Get.toNamed(
-                                                      "/pecas"); // Redireciona para a página inicial
+                                                      "/pecas"); 
                                                   Get.toNamed(
-                                                      "/fornecedores"); // Em seguida, redireciona para a página de fornecedores
-
-                                                  // Recarrega a lista após a exclusão
+                                                      "/fornecedores"); 
                                                   Get.toNamed("/fornecedores");
                                                 },
                                                 child: Text('Confirmar'),
