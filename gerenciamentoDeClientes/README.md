@@ -1,4 +1,3 @@
-<br>
 <h2>Sistema de Gerenciamento Clientes</h2>
 
 <h3> Requisitos para rodar o projeto</h3>
@@ -28,28 +27,41 @@
 
 <h3> Dados do servidor</h3>
 
-<p>
-   Host: 54.207.164.209
-   Username: postgres
-   Database: postgres
-   Port: 5433
-   Password: j8s4684298ds74
-</p>
+<p>Host: 54.207.164.209</p>
+<p>Username: postgres</p>
+<p>Database: postgres</p>
+<p>Port: 5433</p>
+<p>Password: j8s4684298ds74</p>
 
 <h3> Perfil Administrativo</h3>
 
 <p>
-  Ao realizar um novo cadastro no Sistema o novo usuário ficará sem perfil vinculado, pode se acessar o sistema com perfil de admin e conceder acesso ao sistema como está mostrando abaixo, ou continuar com perfil de admin e executar o CRUD. 
-  Obs: Nos dois perfis o Crud está disponível
-  Perfil criado para processo seletivo: Cad. Cliente
-  Usuario Admin: admin
-  Senha: admin
+    Ao realizar um novo cadastro no Sistema o novo usuário ficará sem perfil vinculado, pode se acessar o sistema com perfil de admin e conceder acesso ao sistema como está mostrando abaixo, ou continuar com perfil de admin e executar o CRUD. 
+</p>
+<p>
+    Obs: Nos dois perfis o Crud está disponível, o perfil admin contém uma funcionalidade a mais de vincular perfil
+</p>
+<p>
+    Perfil criado para processo seletivo: Cad. Cliente
+</p>
+<p>
+     Usuario Admin: admin
+</p>
+<p>
+     Senha: admin
 </p>
 
-<div align="center">
+<div align="center" style="display: flex; justify-content: space-around;">
     <img src="utilitarios/MenuUser.png" alt="Classe Java" />
     <img src="utilitarios/TelaPerfil.png" alt="Classe Java" />
 </div>
+
+<h3>Iniciando Aplicativo</h3>
+
+<p>
+     Devido algumas configurações do projeto, no momento so está rodando na Web então deve ser selecionado no Vscode a plataforma Web conforme está na Imagem abaixo:
+</p>
+
 
 <li>Docker. Disponível em: https://www.docker.com/. Acesso em: 16 maio 2023.</li>
 <li>Angular. Disponível em: https://angular.io/. Acesso em: 16 maio 2023.</li>
