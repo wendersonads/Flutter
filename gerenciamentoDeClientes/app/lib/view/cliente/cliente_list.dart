@@ -65,6 +65,7 @@ class ClienteList extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: ButtonComponent(
+                      color: primaryColor,
                       onPressed: () async {
                         await service.listaClientes();
                       },
@@ -89,6 +90,7 @@ class ClienteList extends StatelessWidget {
                             child: Container(
                               margin: const EdgeInsets.symmetric(vertical: 8),
                               child: CardWidget(
+                                color: primaryColor,
                                 widget: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(

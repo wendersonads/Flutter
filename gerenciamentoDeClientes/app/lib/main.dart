@@ -5,14 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+
 Future<void> main() async {
-  await Hive.initFlutter();
-  await Hive.openBox('token');
-  await Hive.openBox('usuario');
+  await _initHive();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
-     GetMaterialApp(
+    GetMaterialApp(
       title: 'CLI',
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
@@ -20,3 +19,10 @@ Future<void> main() async {
     ),
   );
 }
+
+Future<void> _initHive() async {
+  await Hive.initFlutter();
+  await Hive.openBox('token');
+  await Hive.openBox('usuario');
+}
+ 

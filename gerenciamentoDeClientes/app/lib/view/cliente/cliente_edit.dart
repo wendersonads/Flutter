@@ -65,7 +65,7 @@ class ClienteEdit extends StatelessWidget {
 
   Widget _camposIniciais(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      const TextComponent('Cadastrar Cliente'),
+      const TextComponent('Editar Cliente'),
       const SizedBox(
         height: 20,
       ),

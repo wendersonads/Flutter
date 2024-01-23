@@ -8,7 +8,10 @@ import 'package:email_validator/email_validator.dart';
 
 import '../../shared/components/ButtonComponent.dart';
 import '../../shared/components/InputComponent.dart';
+import '../../shared/components/LoadingComponent.dart';
+import '../../shared/components/PaginacaoComponent.dart';
 import '../../shared/components/TextComponent.dart';
+import '../../shared/components/TitleComponent.dart';
 import '../../shared/components/styles.dart';
 import '../../shared/widgets/NavBarWidget.dart';
 import '../../widgets/sidebar_widget.dart';
@@ -16,6 +19,70 @@ import '../../widgets/sidebar_widget.dart';
 class ClienteCadastro extends StatelessWidget {
   ClienteCadastro({Key? key}) : super(key: key);
   final controller = Get.put(ClienteService());
+
+  void _showTags(BuildContext context) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Row(
+            children: [
+              Icon(Icons.warning),
+              SizedBox(
+                width: 8,
+              ),
+              Text('Selecione os Tags'),
+            ],
+          ),
+          content: Container(
+              width: double.maxFinite,
+              child: GetBuilder<ClienteService>(
+                builder: (_) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.tags.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        color: controller.tags[index].selecionado == false
+                            ? Colors.white
+                            : primaryColorHover,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                              child: Container(
+                                child: Text(
+                                    controller.tags[index].nomeTag.toString()),
+                              ),
+                              onTap: () {
+                                controller.selecionarTags(index);
+                              }),
+                        ),
+                      );
+                    },
+                  );
+                },
+              )),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Lógica para cancelar a seleção
+                Navigator.pop(context);
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                controller.salvarTags();
+                Navigator.pop(context);
+              },
+              child: Text('Salvar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Widget _buildBotaoPrincipal(BuildContext context) {
     return Row(
@@ -112,6 +179,22 @@ class ClienteCadastro extends StatelessWidget {
           ),
         ],
       ),
+      const SizedBox(
+        height: 20,
+      ),
+      Row(
+        children: [
+          Expanded(
+            child: ButtonComponent(
+              color: primaryColor,
+              onPressed: () {
+                _showTags(context);
+              },
+              text: 'Selecionar Tags',
+            ),
+          ),
+        ],
+      )
     ]);
   }
 

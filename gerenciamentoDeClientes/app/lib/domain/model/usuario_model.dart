@@ -1,4 +1,5 @@
 import 'package:auth_migration/domain/model/perfil_usuario.dart';
+import 'package:hive/hive.dart';
 
 class Usuario {
   int? id;
@@ -45,4 +46,5 @@ class Usuario {
         : null;
    
   }
+  
 }

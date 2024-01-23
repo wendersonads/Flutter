@@ -2,6 +2,7 @@ import 'package:auth_migration/base/service/base_service.dart';
 import 'package:auth_migration/core/auth/token_service.dart';
 import 'package:auth_migration/core/auth/usuario_service.dart';
 import 'package:auth_migration/domain/model/cliente_model.dart';
+import 'package:auth_migration/domain/model/tags_cliente.dart';
 import 'package:auth_migration/domain/model/token_model.dart';
 import 'package:auth_migration/shared/components/Notificacao.dart';
 import 'package:auth_migration/view/splash/splash_screen.dart';
@@ -39,6 +40,35 @@ class ClienteRepository {
     }
   }
 
+  Future<List<TagsCliente>> buscarTags() async {
+    Token token = _tokenService.get();
+
+    Response response = await get(
+      await _abstractService.getUrl('/tags/'),
+      headers: token.sendToken(),
+    );
+
+    if (response.statusCode == 200) {
+      var jsonList = jsonDecode(response.body);
+      List<TagsCliente> tags = jsonList
+          .map<TagsCliente>((data) => TagsCliente.fromJson(data))
+          .toList();
+
+      tags.forEach(
+        (element) {
+          print(element.nomeTag);
+        },
+      );
+      return tags;
+    } else {
+      _tokenService.delete();
+      var error = jsonDecode(response.body)['message'];
+      Notificacao.snackBar(error, tipoNotificacao: TipoNotificacaoEnum.error);
+      gett.Get.to(const SplashScreen());
+      throw error;
+    }
+  }
+
   Future<bool> salvarNovoCli(ClienteModel cli) async {
     late bool retorno = false;
     try {
@@ -63,6 +93,7 @@ class ClienteRepository {
         retorno = false;
       }
     } catch (e) {
+      print(e.toString());
       retorno = false;
       Notificacao.snackBar(e.toString(),
           tipoNotificacao: TipoNotificacaoEnum.error);
@@ -79,9 +110,8 @@ class ClienteRepository {
         await _abstractService.getUrl('/cliente/${id}'),
         headers: {
           ...token.sendToken(),
-          'Content-Type':
-              'application/json',
-          'Accept': 'application/json' 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: jsonEncode(cli),
       );
