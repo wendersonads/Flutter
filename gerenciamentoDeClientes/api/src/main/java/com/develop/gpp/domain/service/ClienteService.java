@@ -34,29 +34,27 @@ public class ClienteService {
 
 	public ClienteModel salvarCli(@RequestBody ClienteModel cli) {
 		ClienteModel novoCli = clienteRepository.save(cli);
-	
+
 		ClienteModel cliBanco = clienteRepository.findById(novoCli.getIdCliente()).get();
-		
-		if (!cli.getClienteTags().isEmpty()) {
+
+		if (cli.getClienteTags() != null) {
 			List<ClienteTagsModel> clienteTagsList = new ArrayList<>();
-	
+
 			for (ClienteTagsModel cliTags : cli.getClienteTags()) {
 				if (!cliTagRepository.findByClienteAndTag(cliBanco, cliTags.getTag()).isPresent()) {
 					ClienteTagsModel novo = new ClienteTagsModel();
 					novo.setCliente(cliBanco);
 					novo.setTag(cliTags.getTag());
-	
+
 					clienteTagsList.add(novo);
 				}
 			}
-	
+
 			cliTagRepository.saveAll(clienteTagsList);
 		}
-	
+
 		return novoCli;
 	}
-	
-	
 
 	public ClienteModel editarCli(Long id, ClienteModel cli) {
 
@@ -67,8 +65,25 @@ public class ClienteService {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente não localizado!");
 
 		}
+
 		cliBanco.setNome(cli.getNome());
 		cliBanco.setEmail(cli.getEmail());
+
+		if (cli.getClienteTags() != null) {
+			List<ClienteTagsModel> clienteTagsList = new ArrayList<>();
+
+			for (ClienteTagsModel cliTags : cli.getClienteTags()) {
+				if (!cliTagRepository.findByClienteAndTag(cliBanco, cliTags.getTag()).isPresent()) {
+					ClienteTagsModel novo = new ClienteTagsModel();
+					novo.setCliente(cliBanco);
+					novo.setTag(cliTags.getTag());
+
+					clienteTagsList.add(novo);
+				}
+			}
+
+			cliTagRepository.saveAll(clienteTagsList);
+		}
 
 		ClienteModel clienteAtualizado = clienteRepository.save(cliBanco);
 

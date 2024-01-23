@@ -57,7 +57,6 @@ class ClienteService extends GetxController {
       tags.value = await repository.buscarTags();
     } catch (e) {
       carregandoTags(false);
-      print(e.toString());
       Notificacao.snackBar(e.toString(),
           tipoNotificacao: TipoNotificacaoEnum.error);
     } finally {
@@ -103,11 +102,8 @@ class ClienteService extends GetxController {
         cliTags.add(tagCli);
       }
       novo.value = ClienteModel(clienteTags:cliTags, nome: nomeCliente.text, email: emailCliente.text);
-      
-      print(novo.value.toJson());
       retorno = await repository.salvarNovoCli(novo.value);
     } catch (e) {
-      print(e.toString());
       Notificacao.snackBar(e.toString(),
           tipoNotificacao: TipoNotificacaoEnum.error);
     }
@@ -117,8 +113,7 @@ class ClienteService extends GetxController {
   void selecionarTags(index) {
     bool aletera = !tags[index].selecionado!;
     tags[index].selecionado = aletera;
-    tagsSelecionadas.value =
-        tags.where((element) => element.selecionado == true).toList();
+    tagsSelecionadas.value = tags.where((element) => element.selecionado == true).toList();
     update();
   }
 

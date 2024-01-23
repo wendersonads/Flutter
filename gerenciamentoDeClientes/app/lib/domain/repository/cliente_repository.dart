@@ -53,12 +53,6 @@ class ClienteRepository {
       List<TagsCliente> tags = jsonList
           .map<TagsCliente>((data) => TagsCliente.fromJson(data))
           .toList();
-
-      tags.forEach(
-        (element) {
-          print(element.nomeTag);
-        },
-      );
       return tags;
     } else {
       _tokenService.delete();
@@ -93,7 +87,6 @@ class ClienteRepository {
         retorno = false;
       }
     } catch (e) {
-      print(e.toString());
       retorno = false;
       Notificacao.snackBar(e.toString(),
           tipoNotificacao: TipoNotificacaoEnum.error);

@@ -28,7 +28,7 @@ class ClienteCadastro extends StatelessWidget {
         return AlertDialog(
           title: Row(
             children: [
-              Icon(Icons.warning),
+              Icon(Icons.info),
               SizedBox(
                 width: 8,
               ),
@@ -66,7 +66,6 @@ class ClienteCadastro extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                // Lógica para cancelar a seleção
                 Navigator.pop(context);
               },
               child: Text('Cancelar'),
