@@ -4,17 +4,18 @@
 <h3> Requisitos para rodar o projeto</h3>
 
 <li><b>Flutter SDK <= 3.3.10:</b> Devido algumas bibliotecas utilizadas no projeto não funciona em todas as versões "Na minha máquina estou usando 3.3.10".
-<li><b>Virtual Box:</b> Para executar o servidor pode se usar o Virtual Box ou similar Download Disponível em https://www.virtualbox.org/wiki/Downloads
-<li><b>Usar o servidor Ubuntu Server:</b> O projeto tem implementado perfil de usuário e token de autenticação, então é necessário usar esse servidor já com banco de dados Postgres, onde contém a relação de tabelas, funcionalidades e perfis parametrizados. Download Disponível no meu drive => https://drive.google.com/file/d/1u2yw_XWb0o2zABNx-tQJfOI8skmwk21k/view?usp=sharing
-<li><b>Virtual Box:</b> Para executar o servidor pode se usar o Virtual Box ou similar Download Disponível em https://www.virtualbox.org/wiki/Downloads
 <li><b>Java JDK</b> A Api está feita em Java com SpringBoot Framework então há a necessidade de ter o JAVA JDK instalado Download disponnivel em => https://www.oracle.com/br/java/technologies/downloads/#java17 
 
+
+<h3> Rodando API</h3>
+
+
 <p>
-   O objetivo do Gerenciamento de Peças e Pedidos - GPP é fornecer um suporte eficiente e de qualidade aos clientes após a venda de um produto ou serviço. Ele busca garantir a resolução rápida e eficaz de problemas técnicos, promovendo a satisfação do cliente e fortalecendo a reputação da empresa. O software visa facilitar o gerenciamento dos casos de assistência, desde o registro inicial até o fechamento do chamado, proporcionando uma experiência positiva e um atendimento personalizado aos clientes.
+   Na pasta api/src/java executar a classe AuthenticationApiApplication.java como está mostrando no imagem abaixo:
 </p>
 
 <div align="center">
-    <img src="utilitarios/TelasMaior.png" alt="telas" />
+    <img src="utilitarios/ClasseJava.png" alt="Classe Java" />
 </div>
 
 <h4> 1.2 - Escopo do Projeto e Requisitos de Software </h4>
