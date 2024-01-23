@@ -62,12 +62,15 @@
      Devido algumas configurações do projeto, no momento so está rodando na Web então deve ser selecionado no Vscode a plataforma Web conforme está na Imagem abaixo:
 </p>
 
+<div align="center" >
+    <img src="utilitarios/vsCode.png" alt="Classe Java" />
+</div>
 
-<li>Docker. Disponível em: https://www.docker.com/. Acesso em: 16 maio 2023.</li>
-<li>Angular. Disponível em: https://angular.io/. Acesso em: 16 maio 2023.</li>
-<li>Spring Boot. Disponível em: https://spring.io/projects/spring-boot. Acesso em: 16 maio </li>
-<li>PostgreSQL. Disponível em: https://www.postgresql.org/. Acesso em: 16 maio 2023.</li>
-<li>TypeScript. Disponível em: https://www.typescriptlang.org/. Acesso em: 16 maio 2023.</li>
-<li>Java. Disponível em: https://www.java.com/. Acesso em: 16 maio 2023.</li>
-</ol>
-<br>
+<p>
+    Para configuração do projeto está sendo utilizado o Hive para gerenciar e armanezar token, e acesso de funcionalidades do sistema por perfil de acesso. O hive_flutter é um pacote do Flutter que fornece uma solução de armazenamento de dados rápida e fácil de usar baseada no banco de dados Hive. Ele é útil quando você precisa armazenar dados de forma persistente e acessa-los rapidamente em seu aplicativo Flutter. Por esse motivo o inicialização do sistema está não está carregando de forma automática por enquanto, sendo necessário fazer Restart no VsCode clicando no botão de restart conforme mostra a imagem abaixo:
+</p>
+
+div align="center" style="display: flex; justify-content: space-around;">
+    <img src="utilitarios/telaHive.png" alt="Classe Java" />
+    <img src="utilitarios/restarVsCode.png" alt="Classe Java" />
+</div>
