@@ -6,9 +6,7 @@
 <li><b>Flutter SDK <= 3.3.10:</b> Devido algumas bibliotecas utilizadas no projeto não funciona em todas as versões "Na minha máquina estou usando 3.3.10".
 <li><b>Java JDK</b> A Api está feita em Java com SpringBoot Framework então há a necessidade de ter o JAVA JDK instalado Download disponnivel em => https://www.oracle.com/br/java/technologies/downloads/#java17 
 
-
 <h3> Rodando API</h3>
-
 
 <p>
    Na pasta api/src/java executar a classe AuthenticationApiApplication.java como está mostrando no imagem abaixo:
@@ -18,82 +16,41 @@
     <img src="utilitarios/ClasseJava.png" alt="Classe Java" />
 </div>
 
-<h4> 1.2 - Escopo do Projeto e Requisitos de Software </h4>
-<p>O projeto envolve o desenvolvimento de um sistema de assistência técnica terceirizada para fornecer suporte aos clientes após a venda de produtos ou serviços. 
+<h3> Conectando ao Banco Servidor rodando na AWS</h3>
 
-O escopo inclui as seguintes funcionalidades:
-
-<li><b> 1 - Registro de casos:</b> O sistema permitirá o registro de novos casos de assistência técnica, incluindo informações do cliente, detalhes do produto, número de série e garantia.
-<li><b> 2 - Acompanhamento de casos:</b> O sistema permitirá o acompanhamento do progresso dos casos de assistência técnica, registrando interações entre o cliente e o técnico, atualizações de status e soluções propostas.
-<li><b>3 - Comunicação com clientes:</b> O sistema facilitará a comunicação entre os técnicos e os clientes, permitindo o envio de mensagens, agendamento de visitas técnicas e obtenção de informações adicionais sobre os problemas enfrentados.
-<li><b>4 - Registro de soluções: O</b> sistema registrará as soluções adotadas para resolver os problemas dos clientes, incluindo peças substituídas, procedimentos realizados e qualquer outra ação tomada.
-<li><b>5 - Fechamento de casos:</b> O sistema permitirá o registro das informações de fechamento dos casos, incluindo a descrição da solução adotada e o feedback do cliente.
+<p>
+   Para conectar ao banco de dados pode ser utilizado qualquer programa que abra o Postgres, no exemplo abaixo estou usando o próprio VsCode com a extensão MySQL:
 </p>
-<br>
-<p> Fundamentado nas necessidades levantadas com o cliente, foram identificados os seguintes requisitos funcionais :
-<br>
-<br>
-<div align="center">
-<table>
-    <thead>
-    <tr>
-        <th>ID</>
-        <th> Nome </th>
-        <th>DESCRIÇÃO</>
-    </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><b>RF01</b></td>
-            <td><b>Casos</b></td>
-            <td>O sistema deve permitir o registro de novos casos de assistência técnica, incluindo informações do cliente, detalhes do produto, número de série e garantia.</td>
-        </tr>
-        <tr>
-            <td><b>RF02</b></td>
-            <td><b>Progresso</b></td>
-            <td>O sistema deve permitir o acompanhamento do progresso dos casos de assistência técnica, registrando interações entre o cliente e o técnico, atualizações de status e soluções propostas.</td>
-        </tr>
-        <tr>
-            <td><b>RF03</b></td>
-            <td><b>Técnicos</b></td>
-            <td>O sistema deve permitir a designação de técnicos qualificados para lidar com os casos de assistência técnica, levando em consideração a disponibilidade e as habilidades necessárias.</td>
-        </tr>
-        <tr>
-            <td><b>RF04</b></td>
-            <td><b>Soluções</b></td>
-            <td>O sistema deve registrar as soluções adotadas para resolver os problemas dos clientes, incluindo peças substituídas, procedimentos realizados e outras ações tomadas.</td>
-        </tr>
-     
-</table>
-</div>
-<br>
-<h4> 1.3 - Modelo de Domínio </h2>
-<p>O modelo de domínio do GPP - Gerenciamento de Peças e Pedidos foi cuidadosamente desenvolvido para oferecer uma representação clara e estruturada dos principais elementos do processo de suporte e atendimento ao cliente. Esse modelo nos permite compreender e visualizar a forma como cada parte se relaciona e interage, o que resulta em uma gestão eficaz dos casos de assistência técnica.</p>
-<div align="center">
-    <img src="utilitarios/Modelo Dominio.png" alt="Texto alternativo" />
-</div>
-<br>
-<h3> 2 - Arquitetura do Software </h2>
-<p> A arquitetura do nosso software de assistência técnica terceirizada foi desenvolvida com o objetivo de oferecer um sistema flexível, escalável e de alta eficiência. Com uma abordagem moderna e orientada a serviços, nossa arquitetura permite uma gestão eficaz dos casos de assistência técnica, garantindo uma experiência de suporte aprimorada para nossos clientes.</p>
 
 <div align="center">
-    <img src="utilitarios/Arquitetura.png" alt="Texto alternativo" />
+    <img src="utilitarios/Config.png" alt="Classe Java" />
 </div>
-<h4> 2.1 - Tecnologias da implementação </h2>
-<br>
-<p>As principais tecnologias de implementação utilizadas em nosso projeto foram:</p>
-<br>
-<ul>
-<li><b>Docker: </b>Docker é uma plataforma que utiliza a tecnologia de contêineres para simplificar o empacotamento e distribuição de aplicativos. Ele cria ambientes isolados e padronizados, permitindo que os aplicativos sejam executados de maneira consistente em diferentes sistemas operacionais, facilitando a implantação e o gerenciamento.</li>
-<li><b>Angular:</b> Angular é um framework desenvolvido pelo Google, focado no desenvolvimento de aplicações web front-end. Com a utilização de componentes reutilizáveis, ele permite a criação de interfaces de usuário dinâmicas e responsivas. Recursos como data binding (ligação de dados), injeção de dependência e roteamento simplificam o desenvolvimento de aplicações complexas.
-</li>
-<li><b>Spring Boot:</b> Spring Boot é um framework para o desenvolvimento de aplicativos Java que facilita a criação de aplicações autônomas e prontas para produção. Ele oferece uma configuração rápida e automática de componentes comuns do ecossistema Spring, permitindo que os desenvolvedores se concentrem na lógica de negócios em vez de gastar tempo configurando e integrando diferentes camadas do aplicativo.</li>
-<li><b>PostgreSQL:</b> PostgreSQL é um sistema de gerenciamento de banco de dados relacional de código aberto e altamente escalável. Ele possui recursos avançados, como suporte a consultas complexas, transações ACID (Atomicidade, Consistência, Isolamento e Durabilidade), replicação e extensibilidade. O PostgreSQL é amplamente utilizado em aplicações que exigem um banco de dados confiável e poderoso, fornecendo uma base sólida para o armazenamento e manipulação de dados.</li>
-</ul>
-<br>
-<h3> Referências </h3>
-<br>
-<ol>
+
+<h3> Dados do servidor</h3>
+
+<p>
+   Host: 54.207.164.209
+   Username: postgres
+   Database: postgres
+   Port: 5433
+   Password: j8s4684298ds74
+</p>
+
+<h3> Perfil Administrativo</h3>
+
+<p>
+  Ao realizar um novo cadastro no Sistema o novo usuário ficará sem perfil vinculado, pode se acessar o sistema com perfil de admin e conceder acesso ao sistema como está mostrando abaixo, ou continuar com perfil de admin e executar o CRUD. 
+  Obs: Nos dois perfis o Crud está disponível
+  Perfil criado para processo seletivo: Cad. Cliente
+  Usuario Admin: admin
+  Senha: admin
+</p>
+
+<div align="center">
+    <img src="utilitarios/MenuUser.png" alt="Classe Java" />
+    <img src="utilitarios/TelaPerfil.png" alt="Classe Java" />
+</div>
+
 <li>Docker. Disponível em: https://www.docker.com/. Acesso em: 16 maio 2023.</li>
 <li>Angular. Disponível em: https://angular.io/. Acesso em: 16 maio 2023.</li>
 <li>Spring Boot. Disponível em: https://spring.io/projects/spring-boot. Acesso em: 16 maio </li>
