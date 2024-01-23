@@ -1,28 +1,18 @@
-<div align="center" style="">
-    <img src="utilitarios/logo-senai.png" 
-         alt="Texto alternativo" 
-         title="Gerenciamento De Peças e Pedidos"/>
-</div>
 <br>
-<br>
-<br>
-<div align="center">
-    <img src="utilitarios/logo-gpp2.png" style="margin-right: 85px;" alt="Texto alternativo" />
-</div>
+<h2>Sistema de Gerenciamento Clientes</h2>
 
-<br>
-<h2>Sistema de Gerenciamento de Peças e Pedidos</h2>
-<h3> 1 - Visão Geral do Software </h3>
+<h3> Requisitos para rodar o projeto</h3>
 
-<p>
-O sistema de assistência técnica terceirizada é uma solução implementada por uma empresa para fornecer suporte após a venda. Os dados do cliente e do produto são enviados ao sistema gerando a nota fiscal da empresa para que caso ocorra algum problema, será a partir desta nota fiscal que será iniciado o atendimento. Técnicos qualificados são designados para lidar com o suporte, e o progresso é acompanhado. Após a resolução, são registradas as informações de fechamento e o sistema gera relatórios para a empresa. Em resumo, o sistema garante suporte eficiente, resolução de problemas e satisfação do cliente após a venda.
-</p>
-
-<h4> 1.1 - Objetivo do Software </h4>
+<li><b>Flutter SDK <= 3.3.10:</b> Devido algumas bibliotecas utilizadas no projeto não funciona em todas as versões "Na minha máquina estou usando 3.3.10".
+<li><b>Virtual Box:</b> Para executar o servidor pode se usar o Virtual Box ou similar Download Disponível em https://www.virtualbox.org/wiki/Downloads
+<li><b>Usar o servidor Ubuntu Server:</b> O projeto tem implementado perfil de usuário e token de autenticação, então é necessário usar esse servidor já com banco de dados Postgres, onde contém a relação de tabelas, funcionalidades e perfis parametrizados. Download Disponível no meu drive => https://drive.google.com/file/d/1u2yw_XWb0o2zABNx-tQJfOI8skmwk21k/view?usp=sharing
+<li><b>Virtual Box:</b> Para executar o servidor pode se usar o Virtual Box ou similar Download Disponível em https://www.virtualbox.org/wiki/Downloads
+<li><b>Java JDK</b> A Api está feita em Java com SpringBoot Framework então há a necessidade de ter o JAVA JDK instalado Download disponnivel em => https://www.oracle.com/br/java/technologies/downloads/#java17 
 
 <p>
    O objetivo do Gerenciamento de Peças e Pedidos - GPP é fornecer um suporte eficiente e de qualidade aos clientes após a venda de um produto ou serviço. Ele busca garantir a resolução rápida e eficaz de problemas técnicos, promovendo a satisfação do cliente e fortalecendo a reputação da empresa. O software visa facilitar o gerenciamento dos casos de assistência, desde o registro inicial até o fechamento do chamado, proporcionando uma experiência positiva e um atendimento personalizado aos clientes.
 </p>
+
 <div align="center">
     <img src="utilitarios/TelasMaior.png" alt="telas" />
 </div>
