@@ -34,24 +34,29 @@ public class ClienteService {
 
 	public ClienteModel salvarCli(@RequestBody ClienteModel cli) {
 		ClienteModel novoCli = clienteRepository.save(cli);
-
+	
 		ClienteModel cliBanco = clienteRepository.findById(novoCli.getIdCliente()).get();
+		
 		if (!cli.getClienteTags().isEmpty()) {
 			List<ClienteTagsModel> clienteTagsList = new ArrayList<>();
-
+	
 			for (ClienteTagsModel cliTags : cli.getClienteTags()) {
-				ClienteTagsModel novo = new ClienteTagsModel();
-				novo.setCliente(cliBanco);
-				novo.setTag(cliTags.getTag());
-
-				clienteTagsList.add(novo);
+				if (!cliTagRepository.findByClienteAndTag(cliBanco, cliTags.getTag()).isPresent()) {
+					ClienteTagsModel novo = new ClienteTagsModel();
+					novo.setCliente(cliBanco);
+					novo.setTag(cliTags.getTag());
+	
+					clienteTagsList.add(novo);
+				}
 			}
-
+	
 			cliTagRepository.saveAll(clienteTagsList);
 		}
-
+	
 		return novoCli;
 	}
+	
+	
 
 	public ClienteModel editarCli(Long id, ClienteModel cli) {
 

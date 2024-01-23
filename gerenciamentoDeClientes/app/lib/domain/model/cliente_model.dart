@@ -39,9 +39,10 @@ class ClienteModel {
     idCliente = json['idCliente'];
     nome = json['nome'];
     email = json['email'];
+    clienteTags = [];
     if (json['clienteTags'] != null) {
       json['clienteTags'].forEach((f) {
-        clienteTags?.add(ClienteTags.fromMap(f));
+        clienteTags?.add(ClienteTags.fromJson(f));
       });
     }
   }

@@ -25,7 +25,6 @@ class ClienteService extends GetxController {
   late TextEditingController emailCliente;
   late RxList<TagsCliente> tags;
   late RxList<TagsCliente> tagsSelecionadas;
-  late RxList<ClienteTags> cliTags;
   late Rx<ClienteModel> novo;
 
   ClienteService() {
@@ -37,8 +36,7 @@ class ClienteService extends GetxController {
     formFiltragemTagsKey = GlobalKey<FormState>();
     tags = <TagsCliente>[].obs;
     tagsSelecionadas = <TagsCliente>[].obs;
-    cliTags = <ClienteTags>[].obs;
-    novo = ClienteModel(nome: nomeCliente.text, email: emailCliente.text).obs;
+    novo = ClienteModel().obs;
   }
 
   @override
@@ -92,33 +90,29 @@ class ClienteService extends GetxController {
   }
 
   Future<bool> salvarCliente() async {
-  late bool retorno = false;
-  try {
-    List<TagsCliente> copiaTags = List.from(tagsSelecionadas);
-
-    for (var element in copiaTags) {
-      ClienteTags tagCli = ClienteTags();
-      tagCli.cliente = novo.value;
-      tagCli.tag = element;
-
-      cliTags.add(tagCli);
+    late bool retorno = false;
+    try {
+      novo.value.nome = nomeCliente.text;
+      novo.value.email = emailCliente.text;
+      List<ClienteTags> cliTags = [];
+      for (var element in tagsSelecionadas) {
+        ClienteTags tagCli = ClienteTags();
+        tagCli.cliente = novo.value;
+        tagCli.tag = element;
+        
+        cliTags.add(tagCli);
+      }
+      novo.value = ClienteModel(clienteTags:cliTags, nome: nomeCliente.text, email: emailCliente.text);
+      
+      print(novo.value.toJson());
+      retorno = await repository.salvarNovoCli(novo.value);
+    } catch (e) {
+      print(e.toString());
+      Notificacao.snackBar(e.toString(),
+          tipoNotificacao: TipoNotificacaoEnum.error);
     }
-
-    if (novo.value.clienteTags == null) {
-      novo.value.clienteTags = cliTags;
-    } else {
-      novo.value.clienteTags!.addAll(cliTags);
-    }
-
-    retorno = await repository.salvarNovoCli(novo.value);
-  } catch (e) {
-    print(e.toString());
-    Notificacao.snackBar(e.toString(),
-        tipoNotificacao: TipoNotificacaoEnum.error);
+    return retorno;
   }
-  return retorno;
-}
-
 
   void selecionarTags(index) {
     bool aletera = !tags[index].selecionado!;
